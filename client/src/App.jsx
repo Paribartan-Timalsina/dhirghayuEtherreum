@@ -1,11 +1,17 @@
 import Upload from "./artifacts/contracts/Upload.sol/Upload.json"
 import {useState,useEffect} from "react";
 import {ethers} from "ethers";
+import {Routes,Route} from "react-router-dom"
 import FileUpload from "./components/FileUpload";
 import Display from "./components/Display"
+
 import Modal from "./components/Modal"
 import './App.css';
-
+import Patientsignup from "./components/Patientsignup";
+import Doctorsignup from "./components/Doctorsignup";
+import Getdetails from "./components/Getdetails";
+import SignIn from "./components/SignIn";
+import SignUp from "./components/SignUp";
 function App() {
   const [account,setAccount]=useState("");
   const[contract,setContract]=useState(null);
@@ -40,12 +46,22 @@ function App() {
   },[]);
   return (
     <>
-    <h1>Google Drive 3.0</h1>
+    <h1>Electronic Health Record System</h1>
     <br></br>
     <p>Account:{account ? account:"Not Connected"}</p>
     <br></br>
-    <FileUpload account={account} provider={provider} contract={contract}></FileUpload>
-    <Display account={account} contract={contract} ></Display>
+    {/* <FileUpload account={account} provider={provider} contract={contract}/>
+    <Display account={account} contract={contract} /> */}
+    
+    <Routes>
+  <Route  path="/"  element={ <><FileUpload account={account} provider={provider} contract={contract}/>
+    <Display account={account} contract={contract}/></>}/>
+ <Route   exact path="/signup"  element={<SignUp account={account} contract={contract} provider={provider} />}/>
+  <Route exact path="/signin" element={<SignIn account={account} contract={contract} provider={provider} />}/> 
+  <Route exact path="/patientsignup" element={<Patientsignup account={account} contract={contract} provider={provider} />}/>
+  <Route exact path="/doctorsignup" element={<Doctorsignup account={account} contract={contract} provider={provider} />}/>
+  <Route exact path="/details" element={<Getdetails account={account} contract={contract} provider={provider} />}/>
+ </Routes>
     </>
   );
 }

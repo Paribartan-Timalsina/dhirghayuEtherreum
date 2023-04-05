@@ -3,15 +3,181 @@
 pragma solidity >=0.7.0 <0.9.0;
 
 contract Upload{
+     struct Patients{
+
+        string name;
+        uint phone;
+        string gender;
+        string dob;
+        uint height;
+        uint weight;
+        string houseaddr;
+        string bloodgroup;
+        string allergies;
+        string medication;
+        string emergencyName;
+        string emergencyContact;
+        //address addr;
+        //uint date;
+    }
+
+    struct Doctors{
+        string ic;
+        string name;
+        uint phone;
+        string gender;
+        string dob;
+        string qualification;
+        string major;
+        //address addr;
+        //uint date;
+    }
+
+    struct Appointments{
+        address doctoraddr;
+        address patientaddr;
+        string date;
+        string time;
+        string prescription;
+        string description;
+        string diagnosis;
+        string status;
+        uint creationDate;
+    }
     struct Access{
         address user;//which user the connected user has given access to
         bool access;//true or false
     }
+address public owner;
+    address[] public patientList;
+    address[] public doctorList;
+    address[] public appointmentList;
+
+    mapping(address => Patients) patients;
+    mapping(address => Doctors) doctors;
+    mapping(address => Appointments) appointments;
+    mapping(address => bytes32) hashedDetails;
+    mapping(address=>mapping(address=>bool)) isApproved;
+    mapping(address => bool) isPatient;
+    mapping(address => bool) isDoctor;
+    mapping(address => uint) AppointmentPerPatient;
+
+    uint256 public patientCount = 0;
+    uint256 public doctorCount = 0;
+    uint256 public appointmentCount = 0;
+    uint256 public permissionGrantedCount = 0;
+
 
      mapping(address=>string[]) value;//address is the address of the connected wallet and string array takes the url of images stored in IPFS
      mapping(address=>mapping(address=>bool)) ownership;
      mapping(address=>Access[]) accessList;//address-connected smart contract
      mapping(address=>mapping(address=>bool)) previousData;
+
+      constructor()  {
+        owner = msg.sender;
+    }
+
+function isPatients(address _addr) public view returns (bool) {
+    return isPatient[_addr];
+}
+function isDoctors(address _addr) public view returns (bool) {
+    return isDoctor[_addr];
+}
+      function setPatientDetails(Patients memory _p) public {
+        require(!isPatient[msg.sender]);
+        //  p = patients[msg.sender];
+       
+        // p.ic = _ic;
+       // Patients memory p=Patients(_p.name,_p.phone,_p.gender,_p.dob,_p.height,_p.weight,_p.houseaddr,_p.bloodgroup,_p.allergies,_p.medication,_p.emergencyName,_p.emergencyContact);
+         Patients memory p;
+    
+        p.name = _p.name;
+        p.phone = _p.phone;
+        p.gender = _p.gender;
+        p.dob = _p.dob;
+        p.height = _p.height; 
+        p.weight = _p.weight;
+        p.houseaddr = _p.houseaddr;
+        p.bloodgroup = _p.bloodgroup;
+        p.allergies = _p.allergies;
+        p.medication = _p.medication;
+        p.emergencyName = _p.emergencyName;
+        p.emergencyContact = _p.emergencyContact;
+        // p.addr = msg.sender;
+        // p.date = block.timestamp;
+        patients[msg.sender]=p;
+        bytes32 detailsHash = keccak256(abi.encode(p));
+    hashedDetails[msg.sender] = detailsHash;
+        patientList.push(msg.sender);
+        isPatient[msg.sender] = true;
+        isApproved[msg.sender][msg.sender] = true;
+        patientCount++;
+    }
+
+ function setdoctorDetails( Doctors memory _d) public {
+        require(!isDoctor[msg.sender]);
+        // var d = doctors[msg.sender];
+        Doctors memory d;
+        d.ic = _d.ic;
+        d.name = _d.name;
+        d.phone = _d.phone;
+        d.gender = _d.gender;
+        d.dob = _d.dob;
+        d.qualification = _d.qualification;
+        d.major = _d.major;
+        doctors[msg.sender]=d;
+        // d.addr = msg.sender;
+        // d.date = block.timestamp;
+      //   bytes32 detailsHash = keccak256(abi.encodePacked(_name, _phone, _gender,_dob,_qualification,_major));
+    //hashedDetails[msg.sender] = detailsHash;
+        doctorList.push(msg.sender);
+        isDoctor[msg.sender] = true;
+        doctorCount++;
+    }
+
+         function getPatientDetails() public view returns (Patients memory ) {
+             require(isPatient[msg.sender], "Only patients can call this function");
+   // bytes32 detailsHash = hashedDetails[userAddress];
+    //( Patients memory p) = abi.decode(abi.encode(detailsHash), (Patients ));
+   
+    return patients[msg.sender];
+}
+
+         function getDoctorDetails() public view returns (Doctors memory ) {
+            require(isDoctor[msg.sender], "Only doctors can call this function");
+   // bytes32 detailsHash = hashedDetails[userAddress];
+    //( Patients memory p) = abi.decode(abi.encode(detailsHash), (Patients ));
+   
+    return doctors[msg.sender];
+} 
+
+
+//Retrieve patient count
+    function getPatientCount() public view returns(uint256) {
+        return patientCount;
+    }
+
+    //Retrieve doctor count
+    function getDoctorCount() public view returns(uint256) {
+        return doctorCount;
+    }
+
+    //Retrieve appointment count
+    function getAppointmentCount() public view returns(uint256) {
+        return appointmentCount;
+    }
+
+    //Retrieve permission granted count
+    function getPermissionGrantedCount() public view returns(uint256) {
+        return permissionGrantedCount;
+    }
+
+    //Retrieve permission granted count
+    function getAppointmentPerPatient(address _address) public view returns(uint256) {
+        return AppointmentPerPatient[_address];
+    }
+
+
 
      function add(address _user,string memory url) external{
          value[_user].push(url);
