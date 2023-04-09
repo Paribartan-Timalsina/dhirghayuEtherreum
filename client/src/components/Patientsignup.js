@@ -50,7 +50,7 @@ const Patientsignup = ({account,contract,provider}) => {
         <br />
         <label>
           Phone:
-          <input type="text" value={phone} onChange={(e) => setPhone(e.target.value)} />
+          <input type="number" value={phone} onChange={(e) => setPhone(e.target.value)} />
         </label>
         <br />
         <label>
@@ -60,17 +60,17 @@ const Patientsignup = ({account,contract,provider}) => {
         <br />
         <label>
           Date of Birth:
-          <input type="text" value={dob} onChange={(e) => setDob(e.target.value)} />
+          <input type="date" value={dob} onChange={(e) => setDob(e.target.value)} />
         </label>
         <br />
         <label>
           Height:
-          <input type="text" value={height} onChange={(e) => setHeight(e.target.value)} />
+          <input type="number" value={height} onChange={(e) => setHeight(e.target.value)} />
         </label>
         <br />
         <label>
           Weight:
-          <input type="text" value={weight} onChange={(e) => setWeight(e.target.value)} />
+          <input type="number" value={weight} onChange={(e) => setWeight(e.target.value)} />
         </label>
         <br />
         <label>
@@ -105,7 +105,7 @@ const Patientsignup = ({account,contract,provider}) => {
         <label>
           Emergency Contact:
           <input
-            type="text"
+            type="number"
             value={emergencyContact}
             onChange={(e) => setEmergencyContact(e.target.value)}
           />

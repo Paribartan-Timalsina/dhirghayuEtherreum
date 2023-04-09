@@ -22,10 +22,13 @@ function Doctorsignup({account,contract,provider}) {
       qualification,
       major,
     };
-
+try{
     await contract.setdoctorDetails(doctor);
 
     console.log("Doctor details submitted!");
+}catch(error){
+  console.log(error)
+}
   }
 
   return (
