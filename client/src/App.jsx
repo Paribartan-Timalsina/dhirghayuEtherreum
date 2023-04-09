@@ -3,8 +3,8 @@ import {useState,useEffect} from "react";
 import {ethers} from "ethers";
 import {Routes,Route} from "react-router-dom"
 import FileUpload from "./components/FileUpload";
-import Display from "./components/Display"
-
+import Display from "./components/Display";
+import HomePage from "./components/Home";
 import Modal from "./components/Modal"
 import './App.css';
 import Patientsignup from "./components/Patientsignup";
@@ -54,7 +54,8 @@ function App() {
     <Display account={account} contract={contract} /> */}
     
     <Routes>
-  <Route  path="/"  element={ <><FileUpload account={account} provider={provider} contract={contract}/>
+    <Route   exact path="/"  element={<HomePage account={account} contract={contract} provider={provider} />}/> 
+  <Route  path="/fileupload"  element={ <><FileUpload account={account} provider={provider} contract={contract}/>
     <Display account={account} contract={contract}/></>}/>
  <Route   exact path="/signup"  element={<SignUp account={account} contract={contract} provider={provider} />}/>
   <Route exact path="/signin" element={<SignIn account={account} contract={contract} provider={provider} />}/> 
