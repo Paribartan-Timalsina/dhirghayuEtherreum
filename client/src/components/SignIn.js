@@ -1,7 +1,9 @@
 import React from 'react'
+import { useNavigate } from "react-router-dom";
 import { useState,useEffect } from 'react'
 import AuthValidation from "../utils/AuthValidation"
 const SignIn = ({account,contract,provider}) => {
+  const navigate = useNavigate();
   const [name,setName]=useState("")
   const [password,setPassword]=useState("")
   const [code,setCode]=useState("")
@@ -31,11 +33,12 @@ try{
             //     status: 'failed',
             //     digicode: ''
             // });
+            window.alert("Fill the form correctly")
             return
         } else {
             let useraddress = await contract.getUserAddress()
               // .call({ from:account });
-
+          console.log(useraddress)
             if (useraddress == '0x0000000000000000000000000000000000000000') {
                 // this.setState({
                 //     alertMessage: 'this account already exists',
@@ -83,7 +86,7 @@ window.alert("this account doesn't exists")
                     //     usernameToSend
                     // );
                     window.alert("Login successful")
-                    
+                    navigate("/fileupload");
                     return;
                 }
             }

@@ -17,12 +17,15 @@ const Getdetails = ({ account, contract, provider }) => {
 
       if (isPatient) {
         const patientDetails = await contract.getPatientDetails();
+        console.log(patientDetails)
         const modifiedDetails = patientDetails.map((value) =>
           BigNumber.isBigNumber(value) ? value.toNumber() : value
         );
         setDetails(modifiedDetails);
       } else if (isDoctor) {
+        
         const doctorDetails = await contract.getDoctorDetails();
+        console.log(doctorDetails)
         const modifiedDetails = doctorDetails.map((value) =>
           BigNumber.isBigNumber(value) ? value.toNumber() : value
         );

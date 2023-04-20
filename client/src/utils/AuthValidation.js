@@ -20,7 +20,7 @@ const AuthValidation = async (name, account, password, code, provider, contract)
   if(flatSig===hashFromContract){
     return true;
   }else{
-    window.alert("thuikka")
+    window.alert("You neeed a lot hardwork to be successful")
     return false;
   }
       }catch(e){

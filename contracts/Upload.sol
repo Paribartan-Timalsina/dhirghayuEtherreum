@@ -3,6 +3,10 @@
 pragma solidity >=0.7.0 <0.9.0;
 
 contract Upload{
+     struct User {
+        string signatureHash;
+        address userAddress;
+    }
      struct Patients{
 
         string name;
@@ -49,12 +53,14 @@ contract Upload{
         bool access;//true or false
     }
 address public owner;
+ uint256 public nbOfUsers;
     address[] public patientList;
     address[] public doctorList;
     address[] public appointmentList;
-
+    mapping(address => User) private user;
     mapping(address => Patients) patients;
     mapping(address => Doctors) doctors;
+    mapping(string => Doctors) namedoctors;
     mapping(address => Appointments) appointments;
     mapping(address => bytes32) hashedDetails;
     mapping(address=>mapping(address=>bool)) isApproved;
@@ -75,6 +81,8 @@ address public owner;
 
       constructor()  {
         owner = msg.sender;
+        nbOfUsers = 0;
+    
     }
 
 function isPatients(address _addr) public view returns (bool) {
@@ -126,6 +134,7 @@ function isDoctors(address _addr) public view returns (bool) {
         d.qualification = _d.qualification;
         d.major = _d.major;
         doctors[msg.sender]=d;
+        namedoctors[_d.name]=d;
         // d.addr = msg.sender;
         // d.date = block.timestamp;
       //   bytes32 detailsHash = keccak256(abi.encodePacked(_name, _phone, _gender,_dob,_qualification,_major));
@@ -136,7 +145,7 @@ function isDoctors(address _addr) public view returns (bool) {
     }
 
          function getPatientDetails() public view returns (Patients memory ) {
-             require(isPatient[msg.sender], "Only patients can call this function");
+            // require(isPatient[msg.sender], "Only patients can call this function");
    // bytes32 detailsHash = hashedDetails[userAddress];
     //( Patients memory p) = abi.decode(abi.encode(detailsHash), (Patients ));
    
@@ -144,13 +153,15 @@ function isDoctors(address _addr) public view returns (bool) {
 }
 
          function getDoctorDetails() public view returns (Doctors memory ) {
-            require(isDoctor[msg.sender], "Only doctors can call this function");
+           // require(isDoctor[msg.sender], "Only doctors can call this function");
    // bytes32 detailsHash = hashedDetails[userAddress];
     //( Patients memory p) = abi.decode(abi.encode(detailsHash), (Patients ));
    
     return doctors[msg.sender];
 } 
-
+function getfulldetails(string memory _name) public view returns (Doctors memory){
+return namedoctors[_name];
+}
 
 //Retrieve patient count
     function getPatientCount() public view returns(uint256) {
@@ -182,26 +193,26 @@ function isDoctors(address _addr) public view returns (bool) {
      function add(address _user,string memory url) external{
          value[_user].push(url);
      }
-     function allow(address user) external{
-         ownership[msg.sender][user]=true;
-         if(previousData[msg.sender][user]){
+     function allow(address _user) external{
+         ownership[msg.sender][_user]=true;
+         if(previousData[msg.sender][_user]){
              for (uint i = 0;i<accessList[msg.sender].length;i++){
-                 if(accessList[msg.sender][i].user==user){
+                 if(accessList[msg.sender][i].user==_user){
                      accessList[msg.sender][i].access=true;
                  }
              }
          }else{
 
-         accessList[msg.sender].push(Access(user,true));
-         previousData[msg.sender][user]=true;
+         accessList[msg.sender].push(Access(_user,true));
+         previousData[msg.sender][_user]=true;
          }
            
 
      }
-     function disallow(address user) public {
-         ownership[msg.sender][user]=false;
+     function disallow(address _user) public {
+         ownership[msg.sender][_user]=false;
          for(uint i=0;i<accessList[msg.sender].length;i++){
-             if(accessList[msg.sender][i].user==user){
+             if(accessList[msg.sender][i].user==_user){
                  accessList[msg.sender][i].access=false;
              }
          }
@@ -215,4 +226,24 @@ function isDoctors(address _addr) public view returns (bool) {
      function shareAccess() public view returns (Access[] memory){
          return accessList[msg.sender];
      }
+    function register(string memory _signature) public {
+        require(
+            user[msg.sender].userAddress ==
+                address(0x0000000000000000000000000000000000000000),
+            "already registered"
+        );
+
+        user[msg.sender].signatureHash = _signature;
+        user[msg.sender].userAddress = msg.sender;
+        nbOfUsers++;
+    }
+     function getSignatureHash() public view returns (string memory) {
+        require(msg.sender == user[msg.sender].userAddress, "Not allowed");
+
+        return user[msg.sender].signatureHash;
+    }
+
+    function getUserAddress() public view returns (address) {
+        return user[msg.sender].userAddress;
+    }
 }

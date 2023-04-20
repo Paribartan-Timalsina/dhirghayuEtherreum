@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import axios from "axios";
 const FileUpload = ({account, contract, provider}) => {
     const [file, setFile] = useState(null);
+   
     const [fileName, setFileName] = useState("No Image Selected");
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -47,6 +48,7 @@ const FileUpload = ({account, contract, provider}) => {
     }
     return (
         <>
+       
         <form onSubmit={handleSubmit}>
             <label htmlFor="file-upload" >
                 Choose Image
