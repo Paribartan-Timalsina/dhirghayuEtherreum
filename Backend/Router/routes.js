@@ -37,7 +37,7 @@ router.get("/", (req, res) => res.render("demo"))
 
 router.post('/doctors', async (req, res) => {
   console.log(req.body.name)
-  console.log(req.body.email)
+  console.log(req.body.major)
   console.log(req.body.date)
   const existingDoctor= await Doctor.findOne({name:req.body.name})
   try{
@@ -48,7 +48,7 @@ router.post('/doctors', async (req, res) => {
   else{  
      const newDoctor = new Doctor({
         name: req.body.name,
-        email: req.body.email,
+        major: req.body.major,
         availability: req.body.date
       });
     
@@ -77,10 +77,10 @@ router.post('/doctors', async (req, res) => {
   
     if (isAvailable) {
       console.log("Doctor is available on the selected date.");
-      return res.send("Doctor is available on the selected date.");
+      return res.status(200).send("Doctor is available on the selected date.");
     } else {
       console.log("Doctor is not available on the selected date.");
-      return res.send("Doctor is not available on the selected date.");
+      return res.status(404).send("Doctor is not available on the selected date.");
     }
   });
   router.get("/alldates",async (req,res)=>{

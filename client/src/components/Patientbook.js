@@ -2,23 +2,28 @@ import React, { useState, useEffect } from 'react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
+import { BigNumber } from 'bignumber.js';
 import axios from "axios"
 import { Link } from 'react-router-dom';
 function Patientbook({account,contract}) {
-  useEffect(()=>{
-    getDoctors();
-    getDoctorsdates();
-  },[])
   const [availableDates, setAvailableDates] = useState();
   const [doctors,setDoctors]=useState()
   const [doctorsdates,setDoctorsdates]=useState()
+  const [details,setDetails]=useState([])
   const [state, setstate] = useState({
   query: '',
   list: []
     })
-  const [name,setName]=useState('Paribartan Timalsina')
-  const [email,setEmail]=useState('timalsinapari015@gmail.com')
+  const [patientname,setPatientname]=useState('')
+  const [doctorname,setDoctorname]=useState('')
+
   
+    useEffect(()=>{
+      getDoctors();
+      getDoctorsdates();
+     
+      
+    },[])
   const handleChange = (e) => {
     if (!doctors) console.log("no data");
     const results = doctors.filter(post => {
@@ -77,7 +82,11 @@ function Patientbook({account,contract}) {
       .then(response => {
         // Handle the response from the backend
         window.alert(response.data)
+        if(response.status==200){
+          
+        }
       })
+
       .catch(error => {
         // Handle any errors
         console.log(error)
@@ -125,8 +134,13 @@ function Patientbook({account,contract}) {
 //     });
   }
 const getDoctordetails= async (doctorname)=>{
-const details=await contract.getfulldetails(doctorname)
-if(details[0]!==""){
+  setPatientname(await contract.getPatientName())
+ const doctorDetails= await contract.getfulldetails(doctorname)
+ const modifiedDetails = doctorDetails.map((value) =>
+ BigNumber.isBigNumber(value) ? value.toNumber() : value
+);
+setDetails(modifiedDetails);
+if(details[1]!==""){
   console.log(details)
 }else{
   console.log(`${doctorname} is not registered as doctor`)
@@ -144,7 +158,18 @@ if(details[0]!==""){
 return <><button key={post.name} onClick={()=>getDoctordetails(post.name)}>{post.name}</button></>
 }))}
 </ul>
-
+{ details &&
+<div>
+<p>Meet Dr. {details[1]}, a highly qualified and experienced {details[2]} doctor with a
+ specialization in {details[6]}. With a {details[5]} degree from a reputed institution, 
+ Dr. {details[1]} has been practicing medicine for several years and has gained a wealth of
+  knowledge and expertise in {details[6]}. Patients appreciate Dr. {details[1]}'s caring and compassionate 
+  approach to healthcare, as well as their ability to communicate complex medical information in
+   a clear and concise manner. If you're in need of medical attention, you can rest assured that
+    you're in good hands with Dr.{details[1]}. Contact today to schedule an appointment and
+     start your journey towards better health.</p>
+     </div>
+}
 
      <FullCalendar
   plugins={[ dayGridPlugin, interactionPlugin ]}

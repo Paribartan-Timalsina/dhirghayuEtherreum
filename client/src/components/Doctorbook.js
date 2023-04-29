@@ -4,10 +4,16 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { BigNumber } from 'ethers';
 function Doctorbook({account,contract}) {
+ 
   const [details, setDetails] = useState([]);
   const [availableDates, setAvailableDates] = useState([]);
-  const [name,setName]=useState('Paribartan Timalsina')
-  const [email,setEmail]=useState('timalsinapari015@gmail.com')
+  const [name,setName]=useState('')
+  const [major,setMajor]=useState('')
+  useEffect(() => {
+    getName()
+    console.log(details[0])
+     console.log(availableDates);
+   }, [availableDates]);
   const getName=async ()=>{
     console.log(account)
     const isPatient = await contract.isPatients(account);
@@ -18,12 +24,16 @@ function Doctorbook({account,contract}) {
 
     if (isPatient) {
       const patientDetails = await contract.getPatientDetails();
+      setName(patientDetails.name)
+
       const modifiedDetails = patientDetails.map((value) =>
         BigNumber.isBigNumber(value) ? value.toNumber() : value
       );
       setDetails(modifiedDetails);
     } else if (isDoctor) {
       const doctorDetails = await contract.getDoctorDetails();
+      setName(doctorDetails[1]);
+      setMajor(doctorDetails[6]);
       const modifiedDetails = doctorDetails.map((value) =>
         BigNumber.isBigNumber(value) ? value.toNumber() : value
       );
@@ -64,7 +74,7 @@ function Doctorbook({account,contract}) {
           "Content-Type":"application/json",
           Accept:"application/json"
       },
-      body: JSON.stringify({name:name,email:email, date: availableDates })
+      body: JSON.stringify({name:name,major:major, date: availableDates })
   })
     .then(response => {
       // Handle the response from the backend
@@ -76,11 +86,7 @@ function Doctorbook({account,contract}) {
     });
   }
 
-  useEffect(() => {
-   getName()
-   console.log(details.name)
-    console.log(availableDates);
-  }, [availableDates]);
+  
 
   return (
     <div>
