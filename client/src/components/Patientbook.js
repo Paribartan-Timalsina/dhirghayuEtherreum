@@ -4,11 +4,12 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { BigNumber } from 'bignumber.js';
 import axios from "axios"
+import moment from "moment"
 import { Link } from 'react-router-dom';
 function Patientbook({account,contract}) {
   const [availableDates, setAvailableDates] = useState();
   const [doctors,setDoctors]=useState()
-  const [doctorsdates,setDoctorsdates]=useState()
+  const [doctorsdates,setDoctorsdates]=useState([])
   const [details,setDetails]=useState([])
   const [state, setstate] = useState({
   query: '',
@@ -28,7 +29,7 @@ function Patientbook({account,contract}) {
     if (!doctors) console.log("no data");
     const results = doctors.filter(post => {
       if (e.target.value === "") return doctors
-      return post.name.toLowerCase().includes(e.target.value.toLowerCase())
+      return post.toLowerCase().includes(e.target.value.toLowerCase())
     })
     setstate({
       query: e.target.value,
@@ -53,44 +54,54 @@ function Patientbook({account,contract}) {
     }))
   }
   const getDoctorsdates=async ()=>{
-    axios.get("http://localhost:5000/alldates",{
-      method:"GET",
-     headers: {
-        "Content-Type":"application/json",
-        Accept:"application/json"
-
-      },
-      credentials:"include"
-    }).then((response=>{
-      console.log(response.data)
-      setDoctorsdates(response.data)
-  
+    try {
+      const response = await axios.post('http://localhost:5000/alldates', { name: doctorname }, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }
+      });
       
-    }))
+      console.log(response.data);
+      setDoctorsdates(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+    
+  
   }
     const handleSaveAvailability = async (info)=> {
+      doctorsdates.map((dates)=>
+      console.log(dates)
+      )
+
+const availability=doctorsdates.find((dates)=>
+
+dates==availableDates
+)
+if(!availability){
+ 
+}
     // Get the selected date in the local time zone
    // const selectedDate = new Date(info.start.valueOf() - info.start.getTimezoneOffset() * 60000).toISOString().substring(0, 10);
-    const res=await fetch(`http://localhost:5000/appointment`,{
-        method:"POST",
-        headers:{
-            "Content-Type":"application/json",
-            Accept:"application/json"
-        },
-        body: JSON.stringify({availableDates})
-    })
-      .then(response => {
-        // Handle the response from the backend
-        window.alert(response.data)
-        if(response.status==200){
-          
-        }
-      })
+    // const res=await fetch(`http://localhost:5000/appointment`,{
+    //     method:"POST",
+    //     headers:{
+    //         "Content-Type":"application/json",
+    //         Accept:"application/json"
+    //     },
+    //     body: JSON.stringify({availableDates,name:doctorname})
+    // })
+    //   .then(response => {
+    //     // Handle the response from the backend
+    //     window.alert(response.data)
+        
+    //   })
 
-      .catch(error => {
-        // Handle any errors
-        console.log(error)
-      });
+    //   .catch(error => {
+    //     // Handle any errors
+    //     console.log(error)
+    //   });
     // Check if the selected date already exists in the array
     // if (availableDates.includes(selectedDate)) {
     //   window.alert("The date is already selected")
@@ -106,8 +117,9 @@ function Patientbook({account,contract}) {
 
   const handleDateSelect = async (info) => {
     const selectedDate = new Date(info.start.valueOf() - info.start.getTimezoneOffset() * 60000).toISOString().substring(0, 10);
-    setAvailableDates(selectedDate)
-    console.log(selectedDate)
+    const formattedDate = moment(selectedDate, "YYYY-MM-DD").format("MMM DD YYYY");
+    setAvailableDates(formattedDate)
+    console.log(formattedDate)
     // Send the selected date to the backend
     // const response = await fetch('/api/book', {
     //   method: 'POST',
@@ -155,7 +167,7 @@ if(details[1]!==""){
   </form>
 <ul>
 {(state.query === '' ? "" : state.list.map(post => {
-return <><button key={post.name} onClick={()=>getDoctordetails(post.name)}>{post.name}</button></>
+return <><button key={post.name} onClick={()=>getDoctordetails(post)}>{post}</button></>
 }))}
 </ul>
 { details &&

@@ -3,7 +3,7 @@ const router = express.Router()
 
 const DB = require('../config/db')
 const Doctor = require('../models/Schema1')
-
+const Appointment=require("../models/Schema2")
 
 
 
@@ -34,7 +34,17 @@ router.get("/", (req, res) => res.render("demo"))
 //         }
 //     })
 // })
-
+// Create a new appointment
+router.post('/bookingschema', async (req, res) => {
+  const { doctname, patientname, appointmentday } = req.body;
+  const appointment = new Appointment({ doctname, patientname, appointmentday });
+  try {
+    const savedAppointment = await appointment.save()
+    res.status(201).json(savedAppointment);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
 router.post('/doctors', async (req, res) => {
   console.log(req.body.name)
   console.log(req.body.major)
@@ -68,7 +78,7 @@ router.post('/doctors', async (req, res) => {
   router.post('/appointment', async (req, res) => {
     const { availableDates } = req.body;
   
-    const doctor = await Doctor.findOne({ name: "Paribartan Timalsina" });
+    const doctor = await Doctor.findOne({ name: req.body.name });
     if (!doctor) {
       return res.status(404).send("Doctor not found");
     }
@@ -83,8 +93,8 @@ router.post('/doctors', async (req, res) => {
       return res.status(404).send("Doctor is not available on the selected date.");
     }
   });
-  router.get("/alldates",async (req,res)=>{
-    const doctordates = await Doctor.findOne({ name: "Paribartan Timalsina" }).populate("availability");
+  router.post("/alldates",async (req,res)=>{
+    const doctordates = await Doctor.findOne({ name:req.body.name }).populate("availability");
     if (!doctordates) {
       return res.status(404).send("Doctor not found");
     }
@@ -128,12 +138,17 @@ router.post('/datecheck', async (req, res) => {
 })
 
 
-router.get("/allnames",async (req,res)=>{
-  const allDoctors=await Doctor.find()
-  console.log(allDoctors)
-  res.send(allDoctors)
-
-})
+// Get all doctors' names
+router.get('/allnames', async (req, res) => {
+  try {
+    const doctors = await Doctor.find({}, 'name');
+    const names = doctors.map(doctor => doctor.name);
+    res.send(names);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Server Error');
+  }
+});
 
 
   
