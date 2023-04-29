@@ -21,10 +21,8 @@ function Patientbook({account,contract}) {
   
     useEffect(()=>{
       getDoctors();
-      getDoctorsdates();
-     
-      
-    },[])
+      },[])
+    
   const handleChange = (e) => {
     if (!doctors) console.log("no data");
     const results = doctors.filter(post => {
@@ -53,7 +51,7 @@ function Patientbook({account,contract}) {
       
     }))
   }
-  const getDoctorsdates=async ()=>{
+  const getDoctorsdates=async (doctorname)=>{
     try {
       const response = await axios.post('http://localhost:5000/alldates', { name: doctorname }, {
         headers: {
@@ -80,7 +78,22 @@ const availability=doctorsdates.find((dates)=>
 dates==availableDates
 )
 if(!availability){
- 
+ window.alert("The doctor hasn't scheduled this date")
+}
+else{
+  console.log(doctorname)
+  try {
+    const response = await axios.post('http://localhost:5000/bookingschema', {
+      doctname: doctorname,
+      patientname: "prassiddha",
+      appointmentday: availableDates
+    });
+    window.alert("Your booking has been successful");
+  } catch (error) {
+    console.log(error);
+  }
+  
+  
 }
     // Get the selected date in the local time zone
    // const selectedDate = new Date(info.start.valueOf() - info.start.getTimezoneOffset() * 60000).toISOString().substring(0, 10);
@@ -146,6 +159,9 @@ if(!availability){
 //     });
   }
 const getDoctordetails= async (doctorname)=>{
+  console.log(doctorname)
+  setDoctorname(doctorname)
+  getDoctorsdates(doctorname);
   setPatientname(await contract.getPatientName())
  const doctorDetails= await contract.getfulldetails(doctorname)
  const modifiedDetails = doctorDetails.map((value) =>
@@ -167,7 +183,7 @@ if(details[1]!==""){
   </form>
 <ul>
 {(state.query === '' ? "" : state.list.map(post => {
-return <><button key={post.name} onClick={()=>getDoctordetails(post)}>{post}</button></>
+return <><button key={post} onClick={()=>getDoctordetails(post)}>{post}</button></>
 }))}
 </ul>
 { details &&

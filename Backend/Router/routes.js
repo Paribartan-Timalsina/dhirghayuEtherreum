@@ -36,8 +36,10 @@ router.get("/", (req, res) => res.render("demo"))
 // })
 // Create a new appointment
 router.post('/bookingschema', async (req, res) => {
-  const { doctname, patientname, appointmentday } = req.body;
-  const appointment = new Appointment({ doctname, patientname, appointmentday });
+  console.log(req.body.doctname)
+  console.log(req.body.patientname)
+  console.log(req.body.appointmentday)
+  const appointment = new Appointment({ doctname:req.body.doctname, patientname:req.body.patientname, appointmentday:req.body.appointmentday });
   try {
     const savedAppointment = await appointment.save()
     res.status(201).json(savedAppointment);
@@ -76,7 +78,7 @@ router.post('/doctors', async (req, res) => {
   });
 
   router.post('/appointment', async (req, res) => {
-    const { availableDates } = req.body;
+    const { availableDates,name } = req.body;
   
     const doctor = await Doctor.findOne({ name: req.body.name });
     if (!doctor) {
