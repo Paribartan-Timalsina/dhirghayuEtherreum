@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import logo from '../Assets/logo.png';
+import './FileUpload.css';
 import axios from "axios";
 const FileUpload = ({account, contract, provider}) => {
     const [file, setFile] = useState(null);
@@ -47,8 +49,11 @@ const FileUpload = ({account, contract, provider}) => {
         e.preventDefault();
     }
     return (
-        <>
-       
+        <div className='box1'>
+          <div className='logo-img'>
+            <img src={logo} className="Web-Logo" alt="logo" />
+          </div>
+        <h1>Report Upload</h1>
         <form onSubmit={handleSubmit}>
             <label htmlFor="file-upload" >
                 Choose Image
@@ -59,10 +64,11 @@ const FileUpload = ({account, contract, provider}) => {
             <span>Image:{fileName}</span>
             <br>
             </br>
-            <button type="submit" disable={!file}>Submit</button>
+            <button type="submit" className="btn btn-secondary btn-block login" disable={!file}>Submit</button>
         </form>
-        </>
+        </div>
     )
 }
+
 
 export default FileUpload

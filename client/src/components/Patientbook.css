@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;1,300&display=swap'); 
+
+*
+{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: "Poppins",sans-serif;
+} 
+
+.wrapper
+{
+  width:90%;
+}
+
+.wrapper img
+{
+  display:block;
+  width: 150px;
+  margin: auto;
+  align-content: left; 
+  padding-bottom: 2px;
+  margin-bottom: 12px;
+  margin-top: -12px;
+}
+
+.docdetails p
+{
+  margin-top:2px;
+  margin-bottom: 12px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+}
+
+.searchbar
+{
+    margin-left: 270px;
+    padding: 10px;
+    width:60%;
+    margin-top: 10px;
+}
+
+.btn
+{
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1.1rem;
+  margin-top: 1.8rem;
+  padding: 11px 0;
+  border-radius: 10px;
+  outline:none;
+  border:none;
+  width:51%;
+  color:#fff;
+  cursor:pointer;
+  background:rgb(17,107,143);
+
+}
+
+.btn:hover{
+  background: rgb(17,107,143,0.8);
+}

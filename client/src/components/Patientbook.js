@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
+import './Patientbook.css';
+import logo from '../Assets/logo.png';
 import interactionPlugin from '@fullcalendar/interaction';
 import { BigNumber } from 'bignumber.js';
 import axios from "axios"
@@ -177,9 +179,15 @@ if(details[1]!==""){
 }
   
   return (
-    <div>
-     <form>
-     <input onChange={handleChange} value={state.query} type="search"/>
+    <div className='wrapper'>
+        <div className='logo-img'>
+          <img src={logo} className="Web-Logo" alt="logo" />
+    </div>
+    <h1>
+      Doctor Booking
+    </h1>
+     <form className='searchbar'>
+     <input onChange={handleChange} value={state.query} type="search" placeholder='Search Doctor'/>
   </form>
 <ul>
 {(state.query === '' ? "" : state.list.map(post => {
@@ -187,7 +195,7 @@ return <><button key={post} onClick={()=>getDoctordetails(post)}>{post}</button>
 }))}
 </ul>
 { details &&
-<div>
+<div className='docdetails'>
 <p>Meet Dr. {details[1]}, a highly qualified and experienced {details[2]} doctor with a
  specialization in {details[6]}. With a {details[5]} degree from a reputed institution, 
  Dr. {details[1]} has been practicing medicine for several years and has gained a wealth of
@@ -216,7 +224,7 @@ return <><button key={post} onClick={()=>getDoctordetails(post)}>{post}</button>
   defaultView="month"
 />
 
-      <button onClick={handleSaveAvailability}>Check Availability</button>
+      <button onClick={handleSaveAvailability}className='btn'>Check Availability</button>
     </div>
   );
 }

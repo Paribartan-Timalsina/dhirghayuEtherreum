@@ -1,6 +1,8 @@
 import React from 'react'
 import { useNavigate } from "react-router-dom";
 import { useState,useEffect } from 'react'
+import logo from '../Assets/logo.png';
+import './SignIn.css';
 import AuthValidation from "../utils/AuthValidation"
 const SignIn = ({account,contract,provider}) => {
   const navigate = useNavigate();
@@ -100,15 +102,37 @@ e.preventDefault()
 onSignIn()
     }
   return (
-    <>
-      <form  onSubmit={signIn} >
-        <input type="text" placeholder='Your Name' value={name} onChange={(e)=>{setName(e.target.value)}} ></input>
-        <input type="password" placeholder='Your Password' value={password} onChange={(e)=>{setPassword(e.target.value)}} ></input>
-        <input type='number' placeholder='Your Code ' value={code} onChange={(e)=>{setCode(e.target.value)}} ></input>
+
+    <div class='wrapper1'>
+    <div className='logo-img'>
+          <img src={logo} className="Web-Logo" alt="logo" />
+    </div>
+
+      <form onSubmit={signIn} >
+
+        <h1>Sign In</h1>
+
+        <input type="text"
+        placeholder='Your Name'
+        value={name} onChange={(e)=>{setName(e.target.value)}}/>
+
+        <input type="password" 
+        placeholder='Your Password' value={password} onChange={(e)=>{setPassword(e.target.value)}} ></input>
+        
+        <input type='number' 
+        placeholder='Your Code'
+         value={code} onChange={(e)=>{setCode(e.target.value)}} ></input>
+        
         <input type="submit" value="Login" className="btn btn-secondary btn-block login" />
+        
+        <div class='member'>
+        Don't have an account? <a href="SignUp">Click to create</a>
+        </div> 
+
       </form>
-    </>
+    </div>
   )
+
 }
 
 export default SignIn

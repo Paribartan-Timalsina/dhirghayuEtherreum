@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import AuthenticationHash from '../utils/AuthenticationHash';
+import './SignUp.css';
+import logo from '../Assets/logo.png';
 const SignUp = ({ account, contract, provider }) => {
   const [name, setName] = useState("")
   
@@ -84,15 +86,21 @@ const buttonClicked=(e)=>{
 }
 
 return (
-  <>
-    <form   onSubmit={buttonClicked}>
+  <div className='wrapper'>
+      <div className='logo-img'>
+          <img src={logo} className="Web-Logo" alt="logo" />
+    </div>
+    <form onSubmit={buttonClicked}>
+    <h2>Sign Up</h2>
       <input type="text" placeholder='Your Name' value={name} onChange={(e) => { setName(e.target.value) }} ></input>
       <input type="password" placeholder='Your Password' value={password} onChange={(e) => { setPassword(e.target.value) }} ></input>
       <input type='number' placeholder='Your Code ' value={code} onChange={(e) => { setCode(e.target.value) }} ></input>
-      <input type="submit" value="Sign Up"/>
+      {/* <input type="submit" value="Sign Up"/> */}
     </form>
-  </>
+    <input type="submit" value="Sign Up" className="btn btn-secondary btn-block login" />
+  </div>
 )
+
 
 }
 export default SignUp

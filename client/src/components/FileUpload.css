@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;1,300&display=swap'); 
+
+*
+{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: "Poppins",sans-serif;
+}
+
+.box1
+{
+  width:500px;
+  margin-left: auto;
+  margin-right: auto;
+  padding:2rem 1rem;
+  background-color: #fff;
+  border-radius: center;
+  box-shadow: 0 20px 35px rgba(0,0,0,0.1);
+}
+
+.box1 h1
+{
+  font-size: 25px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+    
+}
+
+.box1 label,span
+{
+    text-align: center;
+    margin-top: 12rem;
+    margin-left: 2rem;
+    margin-top: 10px;
+}
+.btn{
+  margin-top:5rem;
+}
+
+

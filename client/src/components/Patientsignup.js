@@ -1,5 +1,7 @@
 
 import React, { useState } from "react";
+import './PatientSignUp.css';
+import logo from '../Assets/logo.png';
 
 const Patientsignup = ({account,contract,provider}) => {
     const [name, setName] = useState("");
@@ -41,60 +43,68 @@ const Patientsignup = ({account,contract,provider}) => {
     }
   };
   return (
-    <div>
+    <div className="container">
+
+    <div className='logo-img'>
+          <img src={logo} className="Web-Logo" alt="logo" />
+    </div>
+    <h1>
+      Patient Registration
+    </h1>
       <form onSubmit={handleSubmit}>
-        <label>
-          Name:
+      <div className="patient-details"> 
+        <label className="input-box">
+          <span>Name</span>
           <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
         </label>
         <br />
-        <label>
-          Phone:
+        <label className="input-box">
+         <span> Phone</span> 
           <input type="number" value={phone} onChange={(e) => setPhone(e.target.value)} />
         </label>
         <br />
-        <label>
-          Gender:
+        <label className="input-box">
+          <span>Gender</span>
           <input type="text" value={gender} onChange={(e) => setGender(e.target.value)} />
         </label>
         <br />
-        <label>
-          Date of Birth:
+        <label className="input-box">
+          <span>Date of Birth</span>
           <input type="date" value={dob} onChange={(e) => setDob(e.target.value)} />
         </label>
         <br />
-        <label>
-          Height:
+        <label className="input-box">
+          <span>Height</span>
           <input type="number" value={height} onChange={(e) => setHeight(e.target.value)} />
         </label>
         <br />
-        <label>
-          Weight:
+        <label className="input-box">
+          <span>Weight</span>
           <input type="number" value={weight} onChange={(e) => setWeight(e.target.value)} />
         </label>
         <br />
-        <label>
-          House Address:
+        <label className="input-box">
+          <span>House Address</span>
           <input type="text" value={houseaddr} onChange={(e) => setHouseaddr(e.target.value)} />
         </label>
         <br />
-        <label>
-          Blood Group:
+        <label className="input-box">
+          <span>Blood Group</span>
           <input type="text" value={bloodgroup} onChange={(e) => setBloodgroup(e.target.value)} />
         </label>
         <br />
-        <label>
-          Allergies:
+        <label className="input-box">
+          <span>Allergies</span>
           <input type="text" value={allergies} onChange={(e) => setAllergies(e.target.value)} />
         </label>
         <br />
-        <label>
-          Medication:
+        <label className="input-box">
+          <span>Medication:</span>
           <input type="text" value={medication} onChange={(e) => setMedication(e.target.value)} />
         </label>
         <br />
-        <label>
-          Emergency Contact Name:
+        <label className="input-box">
+          <span>Emergency Contact Name</span>
           <input
             type="text"
             value={emergencyName}
@@ -102,8 +112,8 @@ const Patientsignup = ({account,contract,provider}) => {
           />
         </label>
         <br />
-        <label>
-          Emergency Contact:
+        <label className="input-box">
+          <span>Emergency Contact</span>
           <input
             type="number"
             value={emergencyContact}
@@ -111,11 +121,10 @@ const Patientsignup = ({account,contract,provider}) => {
           />
         </label>
         <br />
-        <button type="submit">Submit</button>
+      </div>
+        <input type="submit" value="Register" className="btn btn-secondary btn-block login" />
       </form>
     </div>
- 
-
   )
 }
 

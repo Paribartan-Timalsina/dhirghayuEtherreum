@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import logo from '../Assets/logo.png';
+import './medication.css';
 import { ethers } from 'ethers';
-
 
 
 function Medications({account,contract,provider}) {
@@ -31,24 +32,28 @@ function Medications({account,contract,provider}) {
   }
 
   return (
-    <div>
+    <div class='wrapper'>
+      <div className='logo-img'>
+          <img src={logo} className="Web-Logo" alt="logo" />
+    </div>
+
       <h1>Add Treatment</h1>
-      <label>
-        Diseases:
+      <label className='InputBox'>
+        Diseases
         <input type="text" value={diseases} onChange={e => setDiseases(e.target.value)} />
       </label>
       <br />
-      <label>
-        Medication:
+      <label className='InputBox'>
+        Medication
         <input type="text" value={medication} onChange={e => setMedication(e.target.value)} />
       </label>
       <br />
-      <label>
-        Status:
+      <label className='InputBox'>
+        Status
         <input type="checkbox" checked={status} onChange={e => setStatus(e.target.checked)} />
       </label>
       <br />
-      <button onClick={addTreatment}>Add Treatment</button>
+      <button onClick={addTreatment} className='btn'>Add Treatment</button>
     </div>
   );
 }

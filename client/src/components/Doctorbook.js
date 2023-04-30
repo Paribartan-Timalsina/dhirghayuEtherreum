@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import FullCalendar from '@fullcalendar/react';
+import './Doctorbook.css';
+
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { BigNumber } from 'ethers';
@@ -89,8 +91,8 @@ function Doctorbook({account,contract}) {
   
 
   return (
-    <div>
-     <FullCalendar
+    <div className="wrapper">
+     <FullCalendar className='fc'
   plugins={[ dayGridPlugin, interactionPlugin ]}
   selectable={true}
   select={handleDateSelect}
@@ -107,7 +109,7 @@ function Doctorbook({account,contract}) {
   defaultView="month"
 />
 
-      <button onClick={handleSaveAvailability}>Save Availability</button>
+      <button onClick={handleSaveAvailability} className='btn'>Save Availability</button>
     </div>
   );
 }
