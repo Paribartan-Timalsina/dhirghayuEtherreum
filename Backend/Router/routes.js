@@ -36,17 +36,24 @@ router.get("/", (req, res) => res.render("demo"))
 // })
 // Create a new appointment
 router.post('/bookingschema', async (req, res) => {
-  console.log(req.body.doctname)
-  console.log(req.body.patientname)
-  console.log(req.body.appointmentday)
-  const appointment = new Appointment({ doctname:req.body.doctname, patientname:req.body.patientname, appointmentday:req.body.appointmentday });
+  const { doctname, patientname, appointmentday } = req.body;
+
+  // Check if there are already three or more appointments booked for the same day and doctor
+  const appointmentCount = await Appointment.countDocuments({ doctname, appointmentday });
+  if (appointmentCount >= 3) {
+    return res.status(400).json({ message: 'Doctor already has three appointments booked for this day' });
+  }
+
+  // Create a new appointment
+  const appointment = new Appointment({ doctname, patientname, appointmentday });
   try {
-    const savedAppointment = await appointment.save()
+    const savedAppointment = await appointment.save();
     res.status(201).json(savedAppointment);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
 });
+
 router.post('/doctors', async (req, res) => {
   console.log(req.body.name)
   console.log(req.body.major)
@@ -155,7 +162,7 @@ router.get('/allnames', async (req, res) => {
 router.post('/getappointment', async (req, res) => {
   try {
    
-    const appointments = await Appointment.find({patientname:req.body.name});
+    const appointments = await Appointment.find({patientname:req.body.patientname});
     console.log(appointments)
     res.send(appointments);
   } catch (error) {
@@ -164,6 +171,24 @@ router.post('/getappointment', async (req, res) => {
   }
 });
 
-  
+router.post('/deleteappointment', async (req, res) => {
+  console.log(req.body.appointmentDay)
+  //const { appointmentDay } = req.body;
+  try {
+    // Find the appointment with the given appointmentDay
+    const appointment = await Appointment.deleteOne({ appointmentday: req.body.appointmentDay });
+    if (!appointment) {
+      return res.status(404).json({ message: 'Appointment not found' });
+    }
+
+    // Delete the appointment
+   // await appointment.remove();
+    res.json({ message: 'Appointment deleted successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
  
 module.exports = router

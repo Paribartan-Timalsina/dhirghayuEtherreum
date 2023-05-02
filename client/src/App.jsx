@@ -4,6 +4,8 @@ import { ethers } from "ethers";
 import { Routes, Route } from "react-router-dom"
 import FileUpload from "./components/FileUpload";
 import Display from "./components/Display";
+import Appointments from  "./components/Appointments";
+import Treatments from "./components/Treatments";
 import Navbar from "./components/Navbar";
 import HomePage from "./components/Home";
 import Modal from "./components/Modal"
@@ -70,6 +72,8 @@ function App() {
         <Route exact path="/booking" element={<Doctorbook account={account} contract={contract} />} />
         <Route exact path="/patientbooking" element={<Patientbook account={account} contract={contract} />} />
         <Route exact path="/medications" element={<Medications account={account} contract={contract} />} />
+        <Route exact path="/appointments" element={<Appointments account={account} contract={contract} />} />
+        <Route exact path="/treatments" element={<Treatments account={account} contract={contract} />} />
       </Routes>
     </>
   );

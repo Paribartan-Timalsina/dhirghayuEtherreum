@@ -24,7 +24,7 @@ const Getdetails = ({ account, contract, provider }) => {
       console.log(isPatient);
       console.log(isDoctor);
 
-      if (isPatient) {
+      if (ispatient) {
         const patientDetails = await contract.getPatientDetails();
         const patientdiagnosis=await contract.getTreatments();
         (await contract.getPatientName())
@@ -35,7 +35,7 @@ const Getdetails = ({ account, contract, provider }) => {
           BigNumber.isBigNumber(value) ? value.toNumber() : value
         );
         setDetails(modifiedDetails);
-      } else if (isDoctor) {
+      } else if (isdoctor) {
         
         const doctorDetails = await contract.getDoctorDetails();
         console.log(doctorDetails)
@@ -71,58 +71,38 @@ function editdetails(){
       console.error(error);
     }
   };
-const getAppointments=async()=>{
-  try {
-    console.log(details[0])
-    const response = await axios.post('http://localhost:5000/getappointment', { patientname: details[0] }, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      }
-    });
-    
-    console.log(response.data);
-    setAppointmentdates(response.data);
-  } catch (error) {
-    console.error(error);
-  }
-  
-}
+
+
   return (
     <div className="dark-theme">
       <button onClick={handleGetDetails}>Get Details</button>
-      {error && <div>{error}</div>}
+      {/* {error && <div>{error}</div>} */}
      
         {ispatient &&
         <>
-        <div>
-          <h3>Name:{details[0]}</h3>
-          <h3>Phone number:{details[1]}</h3>
-          <h3>Gender:{details[2]}</h3>
-          <h3>Date of birth:{details[3]}</h3>
-          <h3>Height:{details[4]}</h3>
-          <h3>Weight:{details[5]}</h3>
-          <h3>Blood Group:{details[6]}</h3>
-          <h3>Emergency Name:{details[7]}</h3>
-          <h3>Emergency Contact:{details[8]}</h3>
-          <h3>Emergency Contact:{details[9]}</h3>
-         </div>
         
+         <div>
+        <h1>My Treatments</h1>
+        {treatments.map((treatment, index) => (
+          <div key={index}>
+            <h2>Diseases: {treatment.diseases}</h2>
+            <p>Medication: {treatment.medication}</p>
+            <p>Status: {treatment.status ? "Cured" : "Not cured"}</p>
+            <label>
+              <input
+                type="checkbox"
+                checked={treatment.status}
+                onChange={(e) => handleUpdateTreatmentStatus(treatment.diseases, e.target.checked)}
+              />
+              Mark as cured
+            </label>
+          </div>
+        ))}
+      </div>
          
          </>
         }
-        {isdoctor &&
-        <div>
-          <h3>Name:{details[0]}</h3>
-          <h3>Phone number:{details[1]}</h3>
-          <h3>Gender:{details[2]}</h3>
-          <h3>Date of birth:{details[3]}</h3>
-          <h3>Qualificatiom:{details[4]}</h3>
-          <h3>Major:{details[5]}</h3>
-          <h3>Blood Group:{details[6]}</h3>
-          
-         </div>
-        }
+        
         
         
         <button onClick={editdetails}>Edit details</button>
