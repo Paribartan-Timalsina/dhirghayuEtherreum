@@ -22,9 +22,13 @@ function Patientbook({account,contract}) {
 
   
     useEffect(()=>{
+    patientName()
+    console.log(patientname)
       getDoctors();
       },[])
-    
+    const patientName=async()=>{
+      setPatientname(await contract.getPatientName())
+    }
   const handleChange = (e) => {
     if (!doctors) console.log("no data");
     const results = doctors.filter(post => {
@@ -87,7 +91,7 @@ else{
   try {
     const response = await axios.post('http://localhost:5000/bookingschema', {
       doctname: doctorname,
-      patientname: "prassiddha",
+      patientname: patientname,
       appointmentday: availableDates
     });
     window.alert("Your booking has been successful");

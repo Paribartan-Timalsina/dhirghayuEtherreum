@@ -119,7 +119,7 @@ function updateTreatmentStatus(string memory diseases, bool status) public {
     }
 
     function setPatientDetails(Patients memory _p) public {
-        require(!isPatient[msg.sender]);
+       // require(!isPatient[msg.sender]);
         //  p = patients[msg.sender];
 
         // p.ic = _ic;
@@ -147,7 +147,12 @@ function updateTreatmentStatus(string memory diseases, bool status) public {
         isApproved[msg.sender][msg.sender] = true;
         patientCount++;
     }
-
+function setasDoctor () public {
+isDoctor[msg.sender]=true;
+}
+function setasPatient () public {
+isPatient[msg.sender]=true;
+}
     //     function updateTreatment(Treatment memory _t) public {
     //     Treatment memory existingTreatment = medicalRecords[msg.sender];
 
@@ -284,7 +289,7 @@ function updateTreatmentStatus(string memory diseases, bool status) public {
     //         return  medicalRecords[msg.sender];
     //     }
     function setdoctorDetails(Doctors memory _d) public {
-        require(!isDoctor[msg.sender]);
+       // require(!isDoctor[msg.sender]);
         // var d = doctors[msg.sender];
         Doctors memory d;
         d.ic = _d.ic;
@@ -427,16 +432,23 @@ function updateTreatmentStatus(string memory diseases, bool status) public {
         return accessList[msg.sender];
     }
 
-    function register(string memory _signature) public {
+    function register(string memory _signature,string memory _role) public {
         require(
             user[msg.sender].userAddress ==
                 address(0x0000000000000000000000000000000000000000),
             "already registered"
         );
-
+    bytes32 roleHash = keccak256(abi.encodePacked(_role));
+bytes32 doctorHash = keccak256(abi.encodePacked("Doctor"));
+bytes32 patientHash = keccak256(abi.encodePacked("Patient"));
         user[msg.sender].signatureHash = _signature;
         user[msg.sender].userAddress = msg.sender;
         nbOfUsers++;
+      if (roleHash == doctorHash) {
+    isDoctor[msg.sender] = true;
+} else if (roleHash == patientHash) {
+    isPatient[msg.sender] = true;
+}
     }
 
     function getSignatureHash() public view returns (string memory) {

@@ -152,6 +152,17 @@ router.get('/allnames', async (req, res) => {
   }
 });
 
+router.post('/getappointment', async (req, res) => {
+  try {
+   
+    const appointments = await Appointment.find({patientname:req.body.name});
+    console.log(appointments)
+    res.send(appointments);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Server Error');
+  }
+});
 
   
  

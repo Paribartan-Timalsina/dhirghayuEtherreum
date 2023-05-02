@@ -30,8 +30,7 @@ const Patientsignup = ({account,contract,provider}) => {
           weight,
           houseaddr,
           bloodgroup,
-          allergies,
-          medication,
+          
           emergencyName,
           emergencyContact,
         };
@@ -93,16 +92,8 @@ const Patientsignup = ({account,contract,provider}) => {
           <input type="text" value={bloodgroup} onChange={(e) => setBloodgroup(e.target.value)} />
         </label>
         <br />
-        <label className="input-box">
-          <span>Allergies</span>
-          <input type="text" value={allergies} onChange={(e) => setAllergies(e.target.value)} />
-        </label>
-        <br />
-        <label className="input-box">
-          <span>Medication:</span>
-          <input type="text" value={medication} onChange={(e) => setMedication(e.target.value)} />
-        </label>
-        <br />
+        
+      
         <label className="input-box">
           <span>Emergency Contact Name</span>
           <input

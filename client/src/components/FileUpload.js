@@ -1,10 +1,16 @@
 import React, { useState } from 'react'
 import logo from '../Assets/logo.png';
 import './FileUpload.css';
+import Navbar from './Navbar';
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
+import Hamburger from './Hamburger';
 const FileUpload = ({account, contract, provider}) => {
+    const navigate=useNavigate()
     const [file, setFile] = useState(null);
-   
+    const[ispatient,setaspatient]=useState()
+    const[isdoctor,setasdoctor]=useState()
+    const [error, setError] = useState('');
     const [fileName, setFileName] = useState("No Image Selected");
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -37,6 +43,29 @@ const FileUpload = ({account, contract, provider}) => {
             }
         }
     }
+    const gotoDetails = async () => {
+        try {
+          console.log(account);
+    
+          const isPatient = await contract.isPatients(account);
+          const isDoctor = await contract.isDoctors(account);
+          setaspatient(isPatient)
+          setasdoctor(isDoctor)
+          console.log(isPatient);
+          console.log(isDoctor);
+    
+          if (isPatient) {
+            navigate("/patientsignup")
+          } else if (isDoctor) {
+            navigate("/doctorsignup")
+          } else {
+            window.alert("You are neither a doctor nor a patient")
+            setError('You are neither a patient nor a doctor');
+          }
+        } catch (error) {
+          setError(error.message);
+        }
+      };
     const retrieveFile = (e) => {
         const data = e.target.files[0];
         console.log(data);
@@ -49,6 +78,8 @@ const FileUpload = ({account, contract, provider}) => {
         e.preventDefault();
     }
     return (
+        <>
+        
         <div className='box1'>
           <div className='logo-img'>
             <img src={logo} className="Web-Logo" alt="logo" />
@@ -65,8 +96,10 @@ const FileUpload = ({account, contract, provider}) => {
             <br>
             </br>
             <button type="submit" className="btn btn-secondary btn-block login" disable={!file}>Submit</button>
+            <button className="btn btn-secondary btn-block login" onClick={gotoDetails}>Fill my details</button>
         </form>
         </div>
+        </>
     )
 }
 

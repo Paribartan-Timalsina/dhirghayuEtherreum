@@ -4,6 +4,7 @@ import { ethers } from "ethers";
 import { Routes, Route } from "react-router-dom"
 import FileUpload from "./components/FileUpload";
 import Display from "./components/Display";
+import Navbar from "./components/Navbar";
 import HomePage from "./components/Home";
 import Modal from "./components/Modal"
 import './App.css';
@@ -49,6 +50,7 @@ function App() {
   }, []);
   return (
     <>
+    <Navbar/>
       <h1>Electronic Health Record System</h1>
       <br></br>
       <p>Account:{account ? account : "Not Connected"}</p>
@@ -72,5 +74,4 @@ function App() {
     </>
   );
 }
-
 export default App;

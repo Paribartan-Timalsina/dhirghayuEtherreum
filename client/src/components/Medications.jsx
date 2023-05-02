@@ -30,7 +30,13 @@ function Medications({account,contract,provider}) {
       alert(`Error: ${error.message}`);
     }
   }
-
+  function setStatusValue(value) {
+    if (value === 'Cured') {
+      setStatus(true);
+    } else {
+      setStatus(false);
+    }
+  }
   return (
     <div class='wrapper'>
       <div className='logo-img'>
@@ -49,9 +55,12 @@ function Medications({account,contract,provider}) {
       </label>
       <br />
       <label className='InputBox'>
-        Status
-        <input type="checkbox" checked={status} onChange={e => setStatus(e.target.checked)} />
-      </label>
+  Status
+  <select value={status ? 'Cured' : 'Not Cured'} onChange={e => setStatusValue(e.target.value)}>
+    <option value="Not Cured">Not Cured</option>
+    <option value="Cured">Cured</option>
+  </select>
+</label>
       <br />
       <button onClick={addTreatment} className='btn'>Add Treatment</button>
     </div>

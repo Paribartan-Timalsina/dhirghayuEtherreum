@@ -2,11 +2,13 @@ import React, { useState } from 'react'
 import AuthenticationHash from '../utils/AuthenticationHash';
 import './SignUp.css';
 import logo from '../Assets/logo.png';
+import Icon from './Icon';
 const SignUp = ({ account, contract, provider }) => {
   const [name, setName] = useState("")
   
   const [password, setPassword] = useState("")
   const [code, setCode] = useState("")
+  const [role, setRole] = useState("")
   const [signedup, setSignedup] = useState(false)
    const onSignUp = async () => {
     //this.setState({ signedUp: false });
@@ -33,7 +35,7 @@ const SignUp = ({ account, contract, provider }) => {
       //     status: 'failed',
       //     digicode: ''
       // });
-      console.log("ok")
+      window.alert("Your code length is less than 6")
     //  window.alert("Your code length is less than 6")
       
         } else {
@@ -55,8 +57,8 @@ window.alert("this account already exists")
       }
        else {
         let hash = await AuthenticationHash(name, account, password, code, provider);
-
-        await contract.register(hash)
+        
+        await contract.register(hash,role)
 
         // this.setState({
         //     username: '',
@@ -80,8 +82,9 @@ window.alert("this account already exists")
   }
 
 const buttonClicked=(e)=>{
-  e.preventDefault()
   onSignUp()
+  e.preventDefault()
+  
 
 }
 
@@ -90,14 +93,17 @@ return (
       <div className='logo-img'>
           <img src={logo} className="Web-Logo" alt="logo" />
     </div>
+    <Icon/>
     <form onSubmit={buttonClicked}>
     <h2>Sign Up</h2>
       <input type="text" placeholder='Your Name' value={name} onChange={(e) => { setName(e.target.value) }} ></input>
       <input type="password" placeholder='Your Password' value={password} onChange={(e) => { setPassword(e.target.value) }} ></input>
-      <input type='number' placeholder='Your Code ' value={code} onChange={(e) => { setCode(e.target.value) }} ></input>
+      <input type='text' placeholder='Your Role' value={role} onChange={(e) => { setRole(e.target.value) }} ></input>
+      <input type='text' placeholder='Your Code ' value={code} onChange={(e) => { setCode(e.target.value) }} ></input>
       {/* <input type="submit" value="Sign Up"/> */}
-    </form>
+    
     <input type="submit" value="Sign Up" className="btn btn-secondary btn-block login" />
+    </form>
   </div>
 )
 

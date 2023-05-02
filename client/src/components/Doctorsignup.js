@@ -27,7 +27,7 @@ function Doctorsignup({account,contract,provider}) {
 try{
     await contract.setdoctorDetails(doctor);
 
-    console.log("Doctor details submitted!");
+    window.alert("Doctor details submitted!");
 }catch(error){
   console.log(error)
 }
@@ -82,7 +82,7 @@ try{
           onChange={(e) => setMajor(e.target.value)} />
         </label> 
 
-        <input type="submit" value="Regsiter" className="btn btn-secondary btn-block login" />
+        <input type="submit" value="Register" className="btn btn-secondary btn-block login" />
       </form>
     </div>
   );

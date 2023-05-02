@@ -40,7 +40,7 @@ try{
         } else {
             let useraddress = await contract.getUserAddress()
               // .call({ from:account });
-          console.log(useraddress)
+            console.log(useraddress)
             if (useraddress == '0x0000000000000000000000000000000000000000') {
                 // this.setState({
                 //     alertMessage: 'this account already exists',
@@ -71,7 +71,7 @@ window.alert("this account doesn't exists")
                     //     password: '',
                     //     digicode: '',
                     // });
-                    window.alert("unable to login")
+                    window.alert("Unable to Login")
                     return
                 } else {
                     // this.setState({
@@ -126,7 +126,7 @@ onSignIn()
         <input type="submit" value="Login" className="btn btn-secondary btn-block login" />
         
         <div class='member'>
-        Don't have an account? <a href="SignUp">Click to create</a>
+        Don't have an account? <a href="/signup">Click to create</a>
         </div> 
 
       </form>

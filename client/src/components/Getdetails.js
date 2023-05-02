@@ -1,13 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from "axios"
 import { BigNumber } from 'bignumber.js';
 import { useNavigate } from "react-router-dom";
 const Getdetails = ({ account, contract, provider }) => {
   const navigate = useNavigate();
+  const[appointmentdates,setAppointmentdates]=useState()
   const[ispatient,setaspatient]=useState()
   const[isdoctor,setasdoctor]=useState()
   const [details, setDetails] = useState([]);
   const [error, setError] = useState('');
   const [treatments, setTreatments] = useState([]);
+  useEffect(()=>{
+    //handleGetDetails();
+  },[])
   const handleGetDetails = async () => {
     try {
       console.log(account);
@@ -22,6 +27,8 @@ const Getdetails = ({ account, contract, provider }) => {
       if (isPatient) {
         const patientDetails = await contract.getPatientDetails();
         const patientdiagnosis=await contract.getTreatments();
+        (await contract.getPatientName())
+        setTreatments(patientdiagnosis)
         console.log(patientdiagnosis)
         console.log(patientDetails)
         const modifiedDetails = patientDetails.map((value) =>
@@ -37,10 +44,7 @@ const Getdetails = ({ account, contract, provider }) => {
         );
         setDetails(modifiedDetails);
       } else {
-        const patientdiagnosis=await contract.getTreatments();
-        console.log(patientdiagnosis)
-        setTreatments(patientdiagnosis)
-        console.log(treatments)
+        
         setError('You are neither a patient nor a doctor');
       }
     } catch (error) {
@@ -48,7 +52,15 @@ const Getdetails = ({ account, contract, provider }) => {
     }
   };
 function editdetails(){
+  if(isdoctor){
   navigate("/doctorsignup")
+  }
+  else if(ispatient){
+    navigate("/patientsignup")
+  }
+  else{
+    window.alert("You are neither a patient nor a doctor")
+  }
 }
   const handleUpdateTreatmentStatus = async (diseases, status) => {
     try {
@@ -59,13 +71,29 @@ function editdetails(){
       console.error(error);
     }
   };
-
+const getAppointments=async()=>{
+  try {
+    const response = await axios.post('http://localhost:5000/getappointment', { patientname: details[0] }, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }
+    });
+    
+    console.log(response.data);
+    setAppointmentdates(response.data);
+  } catch (error) {
+    console.error(error);
+  }
+  
+}
   return (
     <div className="dark-theme">
       <button onClick={handleGetDetails}>Get Details</button>
       {error && <div>{error}</div>}
      
-        {ispatient&&
+        {ispatient &&
+        <>
         <div>
           <h3>Name:{details[0]}</h3>
           <h3>Phone number:{details[1]}</h3>
@@ -78,6 +106,11 @@ function editdetails(){
           <h3>Emergency Contact:{details[8]}</h3>
           <h3>Emergency Contact:{details[9]}</h3>
          </div>
+         <div>
+          <h2>My appointments</h2>
+          <button onClick={getAppointments}>See Appointments</button>
+         </div>
+         </>
         }
         {isdoctor &&
         <div>

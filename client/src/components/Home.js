@@ -1,7 +1,7 @@
 import React from 'react';
 import './home.css';
 import backgroundImg from '../Assets/backgroundimage.jpg';
-
+import {Link} from "react-router-dom"
 function Home() {
   return (
     <div className="container">
@@ -20,11 +20,9 @@ function Home() {
             <h2>Welcome to our EHR system</h2>
             <p>Please select your role to login or sign up</p>
             <div className="buttons">
-              <button>Doctor Login</button>
-              <button>Patient Login</button>
-              <button>Doctor Sign Up</button>
-              <button>Patient Sign Up</button>
-            </div>
+              <button> <Link to="/signin">Login</Link></button>
+             <button><Link to="/signup">Sign Up</Link></button>
+             </div>
           </div>
         </section>
         <section className="features">
