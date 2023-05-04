@@ -17,10 +17,10 @@ function Navbar() {
         <div className="line"></div>
       </div>
       <ul className={`nav-links ${showMenu ? "show" : ""}`}>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Services</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="/getdetails">My details</a></li>
+        <li><a href="/booking">My Booking</a></li>
+        <li><a href="#">Patient Booking</a></li>
+        
       </ul>
     </nav>
   );

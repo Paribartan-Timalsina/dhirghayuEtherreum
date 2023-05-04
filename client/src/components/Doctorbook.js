@@ -5,6 +5,7 @@ import './Doctorbook.css';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { BigNumber } from 'ethers';
+import Icon from "./PatientIcon"
 function Doctorbook({account,contract}) {
  
   const [details, setDetails] = useState([]);
@@ -91,7 +92,9 @@ function Doctorbook({account,contract}) {
   
 
   return (
+    
     <div className="wrapper">
+    <Icon/>
      <FullCalendar className='fc'
   plugins={[ dayGridPlugin, interactionPlugin ]}
   selectable={true}

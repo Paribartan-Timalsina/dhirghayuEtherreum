@@ -18,6 +18,7 @@ import SignUp from "./components/SignUp";
 import Doctorbook from "./components/Doctorbook";
 import Patientbook from "./components/Patientbook";
 import Medications from "./components/Medications.jsx";
+import Icon from "./components/PatientIcon";
 function App() {
   const [account, setAccount] = useState("");
   const [contract, setContract] = useState(null);
@@ -73,6 +74,7 @@ function App() {
         <Route exact path="/patientbooking" element={<Patientbook account={account} contract={contract} />} />
         <Route exact path="/medications" element={<Medications account={account} contract={contract} />} />
         <Route exact path="/appointments" element={<Appointments account={account} contract={contract} />} />
+        <Route exact path="/icons" element={<Icon account={account} contract={contract} />} />
         <Route exact path="/treatments" element={<Treatments account={account} contract={contract} />} />
       </Routes>
     </>

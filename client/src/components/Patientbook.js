@@ -3,6 +3,7 @@ import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import './Patientbook.css';
 import logo from '../Assets/logo.png';
+import Icon from "./PatientIcon"
 import interactionPlugin from '@fullcalendar/interaction';
 import { BigNumber } from 'bignumber.js';
 import axios from "axios"
@@ -12,7 +13,7 @@ function Patientbook({account,contract}) {
   const [availableDates, setAvailableDates] = useState();
   const [doctors,setDoctors]=useState()
   const [doctorsdates,setDoctorsdates]=useState([])
-  const [details,setDetails]=useState([])
+  const [details,setDetails]=useState()
   const [state, setstate] = useState({
   query: '',
   list: []
@@ -187,6 +188,7 @@ if(details[1]!==""){
         <div className='logo-img'>
           <img src={logo} className="Web-Logo" alt="logo" />
     </div>
+    <Icon/>
     <h1>
       Doctor Booking
     </h1>

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import AuthenticationHash from '../utils/AuthenticationHash';
 import './SignUp.css';
 import logo from '../Assets/logo.png';
-import Icon from './Icon';
+import Icon from './PatientIcon';
 const SignUp = ({ account, contract, provider }) => {
   const [name, setName] = useState("")
   

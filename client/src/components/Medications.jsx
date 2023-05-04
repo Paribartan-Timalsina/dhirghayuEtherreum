@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import logo from '../Assets/logo.png';
 import './medication.css';
 import { ethers } from 'ethers';
+import Icon from './PatientIcon';
 
 
 function Medications({account,contract,provider}) {
@@ -39,10 +40,11 @@ function Medications({account,contract,provider}) {
   }
   return (
     <div class='wrapper'>
+    
       <div className='logo-img'>
           <img src={logo} className="Web-Logo" alt="logo" />
     </div>
-
+    <Icon/>
       <h1>Add Treatment</h1>
       <label className='InputBox'>
         Diseases
