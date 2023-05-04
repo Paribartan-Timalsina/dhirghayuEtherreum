@@ -1,0 +1,35 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+    }
+    
+    .my-appointments {
+    margin-bottom: 20px;
+    }
+    
+    .appointment-date {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+    }
+    
+    .doctor-name {
+    margin-bottom: 5px;
+    }
+    
+    .appointment-day {
+    margin-bottom: 5px;
+    }
+    
+    .cancel-appointment-btn {
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    }
