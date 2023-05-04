@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from "axios"
 import { BigNumber } from 'bignumber.js';
 import { useNavigate } from "react-router-dom";
+import PatientIcon from "./PatientIcon"
+import DoctorIcon from "./DoctorIcon"
 const Getdetails = ({ account, contract, provider }) => {
   const navigate = useNavigate();
   const[appointmentdates,setAppointmentdates]=useState([])

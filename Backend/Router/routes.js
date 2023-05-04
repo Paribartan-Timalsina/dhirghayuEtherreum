@@ -170,7 +170,17 @@ router.post('/getappointment', async (req, res) => {
     res.status(500).send('Server Error');
   }
 });
-
+router.post('/getdoctorappointment', async (req, res) => {
+  try {
+   
+    const appointments = await Appointment.find({doctname:req.body.doctname});
+    console.log(appointments)
+    res.send(appointments);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Server Error');
+  }
+});
 router.post('/deleteappointment', async (req, res) => {
   console.log(req.body.appointmentDay)
   //const { appointmentDay } = req.body;
