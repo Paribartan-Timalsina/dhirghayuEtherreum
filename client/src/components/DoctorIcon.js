@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Navbar.css';
 
-function Navbar() {
+function DoctorIcon() {
   const [showMenu, setShowMenu] = useState(false);
 
   function handleMenuToggle() {
@@ -19,11 +19,11 @@ function Navbar() {
       <ul className={`nav-links ${showMenu ? "show" : ""}`}>
         <li><a href="/getdetails">My details</a></li>
         <li><a href="/booking">My Booking</a></li>
-        <li><a href="#">Patient Booking</a></li>
+        <li><a href="/patientappointments">Patient Appointments</a></li>
         
       </ul>
     </nav>
   );
 }
 
-export default Navbar;
+export default DoctorIcon;

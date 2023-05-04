@@ -93,7 +93,7 @@ return (
       <div className='logo-img'>
           <img src={logo} className="Web-Logo" alt="logo" />
     </div>
-    <Icon/>
+    
     <form onSubmit={buttonClicked}>
     <h2>Sign Up</h2>
       <input type="text" placeholder='Your Name' value={name} onChange={(e) => { setName(e.target.value) }} ></input>

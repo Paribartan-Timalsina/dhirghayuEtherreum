@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Navbar.css';
 
-function Navbar() {
+function PatientIcon() {
   const [showMenu, setShowMenu] = useState(false);
 
   function handleMenuToggle() {
@@ -26,4 +26,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default PatientIcon;

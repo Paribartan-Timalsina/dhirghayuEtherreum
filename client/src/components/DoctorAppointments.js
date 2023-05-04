@@ -4,17 +4,16 @@ import { BigNumber } from 'bignumber.js';
 import { useNavigate } from "react-router-dom";
 import PatientIcon from "./PatientIcon"
 import DoctorIcon from "./DoctorIcon"
-const Getdetails = ({ account, contract, provider }) => {
+const DoctorApointments = ({ account, contract, provider }) => {
   const navigate = useNavigate();
-  const[appointmentdates,setAppointmentdates]=useState()
+  const[appointmentdates,setAppointmentdates]=useState([])
   const[ispatient,setaspatient]=useState()
   const[isdoctor,setasdoctor]=useState()
   const [details, setDetails] = useState([]);
   const [error, setError] = useState('');
   const [treatments, setTreatments] = useState([]);
-  
   useEffect(()=>{
-    //handleGetDetails();
+  //  handleGetDetails();
   },[])
   const handleGetDetails = async () => {
     try {
@@ -65,19 +64,30 @@ function editdetails(){
     window.alert("You are neither a patient nor a doctor")
   }
 }
-  const handleUpdateTreatmentStatus = async (diseases, status) => {
+const cancelAppointment = async (appointmentDay) => {
+    console.log(appointmentDay)
     try {
-      await contract.updateTreatmentStatus(diseases, status);
-      const patientTreatments = await contract.getTreatments();
-      setTreatments(patientTreatments);
+      const response = await axios.post('http://localhost:5000/deleteappointment', {
+    
+          appointmentDay
+        ,
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }
+      });
+  
+      //console.log(response.data);
+     // setAppointmentdates(response.data);
     } catch (error) {
       console.error(error);
     }
   };
+    
 const getAppointments=async()=>{
   try {
     console.log(details[0])
-    const response = await axios.post('http://localhost:5000/getappointment', { patientname: details[0] }, {
+    const response = await axios.post('http://localhost:5000/getdoctorappointment', { doctname: details[1] }, {
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
@@ -93,46 +103,34 @@ const getAppointments=async()=>{
 }
   return (
     <div className="dark-theme">
-    {ispatient && <PatientIcon/>}
-    {isdoctor&&<DoctorIcon/>}
       <button onClick={handleGetDetails}>Get Details</button>
       {error && <div>{error}</div>}
      
         {ispatient &&
         <>
-        <div>
-          <h3>Name:{details[0]}</h3>
-          <h3>Phone number:{details[1]}</h3>
-          <h3>Gender:{details[2]}</h3>
-          <h3>Date of birth:{details[3]}</h3>
-          <h3>Height:{details[4]}</h3>
-          <h3>Weight:{details[5]}</h3>
-          <h3>Blood Group:{details[6]}</h3>
-          <h3>Emergency Name:{details[7]}</h3>
-          <h3>Emergency Contact:{details[8]}</h3>
-          <h3>Emergency Contact:{details[9]}</h3>
-         </div>
         
+        
+         <div>
+          <h2>My appointments</h2>
+          <button onClick={getAppointments}>See Appointments</button>
+         </div>
+         <div>
+         {appointmentdates.map(dates=>
+            <>
+            <h4>Doctorname:{dates.doctname}</h4>
+            <h4>Appointment Day:{dates.appointmentday}</h4>
+            <button onClick={()=>cancelAppointment(dates.appointmentday)}>Cancel this appointment</button>
+            </>
+         )}
          
+         </div>
          </>
         }
-        {isdoctor &&
-        <div>
-          <h3>Name:{details[0]}</h3>
-          <h3>Phone number:{details[1]}</h3>
-          <h3>Gender:{details[2]}</h3>
-          <h3>Date of birth:{details[3]}</h3>
-          <h3>Qualificatiom:{details[4]}</h3>
-          <h3>Major:{details[5]}</h3>
-          <h3>Blood Group:{details[6]}</h3>
-          
-         </div>
-        }
+       
         
-        
-        <button onClick={editdetails}>Edit details</button>
+       
     </div>
   );
 };
 
-export default Getdetails;
+export default DoctorApointments;
