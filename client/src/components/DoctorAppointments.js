@@ -14,10 +14,12 @@ const Appointments = ({ account, contract, provider }) => {
   const [details, setDetails] = useState([]);
   const [error, setError] = useState('');
   const [treatments, setTreatments] = useState([]);
-  const [patientname,setPatientname]=useState()
+  const [patientname,setPatientname]=useState('')
   const [doctorname,setDoctorname]=useState()
   const [appointmentsLoaded, setAppointmentsLoaded] = useState(false);
-
+  useEffect(() => {
+    //handleGetDetails();
+  }, [])
   const handleGetDetails = async () => {
     try {
       console.log(account);
@@ -30,12 +32,43 @@ const Appointments = ({ account, contract, provider }) => {
       console.log(isDoctor);
 
       if (isPatient) {
-        const name= await contract.getPatientName()
-        setPatientname(name)
+        const name= await contract.getPatientDetails()
+        console.log(name[0])
+        setPatientname(name[0])
+        try {
+          const response = await axios.post('http://localhost:5000/getappointment', { patientname:name[0] }, {
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            }
+          });
+    
+          console.log(response.data);
+          setAppointmentdates(response.data);
+          setAppointmentsLoaded(true);
+        } catch (error) {
+          console.error(error);
+        }
       } else if (isDoctor) {
-        const name= await contract.getDoctorName()
-        setDoctorname(name)
-      } else {
+        const name= await contract.getDoctorDetails()
+        console.log(name[1])
+        setPatientname(name[1])
+        try {
+          const response = await axios.post('http://localhost:5000/getdoctorappointment', { doctname:name[1] }, {
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            }
+          });
+    
+          console.log(response.data);
+          setAppointmentdates(response.data);
+          setAppointmentsLoaded(true);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    else {
         setError('You are neither a patient nor a doctor');
       }
     } catch (error) {
@@ -63,7 +96,7 @@ const Appointments = ({ account, contract, provider }) => {
 
   const getAppointments = async () => {
     try {
-      const response = await axios.post('http://localhost:5000/getdoctorappointment', { doctname:doctorname }, {
+      const response = await axios.post('http://localhost:5000/getappointment', { patientname:patientname }, {
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
@@ -78,26 +111,24 @@ const Appointments = ({ account, contract, provider }) => {
     }
   };
 
-  useEffect(() => {
-    handleGetDetails();
-  }, [])
+  
 
   return (
     <div className="container">
       <DoctorIcon />
       <h2>My Appointments</h2>
-      {appointmentsLoaded ? (
+      {isdoctor && appointmentsLoaded ? (
         <div className="appointment-dates">
           {appointmentdates.map(dates => (
             <div className="appointment-date">
-              <h4 className="doctor-name">Patient name: {dates.patientname}</h4>
+              <h4 className="doctor-name">Patient name: {dates.doctname}</h4>
               <h4 className="appointment-day">Appointment Day: {dates.appointmentday}</h4>
               <button className="cancel-appointment-btn" onClick={() => cancelAppointment(dates.appointmentday)}>Cancel this appointment</button>
             </div>
           ))}
         </div>
       ) : (
-        <button onClick={getAppointments}>See Appointments</button>
+        <button onClick={handleGetDetails}>See Appointments</button>
       )}
     </div>
   );

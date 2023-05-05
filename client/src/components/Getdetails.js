@@ -115,6 +115,25 @@ const getAppointments=async()=>{
       <h3 className="patient-details__info__item">Emergency Contact: {details[8]}</h3>
       <h3 className="patient-details__info__item">Emergency Contact: {details[9]}</h3>
     </div>
+    <div>
+        <h1>My Treatments</h1>
+        {treatments.map((treatment, index) => (
+  <div key={index} class="treatment-container">
+    <h2 class="disease-heading">Diseases: {treatment.diseases}</h2>
+    <p class="medication-paragraph">Medication: {treatment.medication}</p>
+    <p class="status-paragraph">Status: {treatment.status ? "Cured" : "Not cured"}</p>
+    <label class="status-label">
+      <input
+        type="checkbox"
+        checked={treatment.status}
+        onChange={(e) => handleUpdateTreatmentStatus(treatment.diseases, e.target.checked)}
+        class="status-checkbox"
+      />
+      Mark as cured
+    </label>
+  </div>
+))}
+      </div>
   </div>
 }
 

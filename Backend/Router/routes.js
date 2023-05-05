@@ -37,7 +37,7 @@ router.get("/", (req, res) => res.render("demo"))
 // Create a new appointment
 router.post('/bookingschema', async (req, res) => {
   const { doctname, patientname, appointmentday } = req.body;
-
+console.log(doctname ,patientname)
   // Check if there are already three or more appointments booked for the same day and doctor
   const appointmentCount = await Appointment.countDocuments({ doctname, appointmentday });
   if (appointmentCount >= 3) {
@@ -103,6 +103,7 @@ router.post('/doctors', async (req, res) => {
     }
   });
   router.post("/alldates",async (req,res)=>{
+    console.log(req.body.name)
     const doctordates = await Doctor.findOne({ name:req.body.name }).populate("availability");
     if (!doctordates) {
       return res.status(404).send("Doctor not found");
@@ -161,7 +162,7 @@ router.get('/allnames', async (req, res) => {
 
 router.post('/getappointment', async (req, res) => {
   try {
-   
+   console.log(req.body.patientname)
     const appointments = await Appointment.find({patientname:req.body.patientname});
     console.log(appointments)
     res.send(appointments);
