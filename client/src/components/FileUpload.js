@@ -4,6 +4,7 @@ import './FileUpload.css';
 import Navbar from './Navbar';
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
+import Modal from "./Modal"
 import Hamburger from './Hamburger';
 const FileUpload = ({account, contract, provider}) => {
     const navigate=useNavigate()
@@ -12,6 +13,7 @@ const FileUpload = ({account, contract, provider}) => {
     const[isdoctor,setasdoctor]=useState()
     const [error, setError] = useState('');
     const [fileName, setFileName] = useState("No Image Selected");
+    const [modalOpen,setModalOpen]=useState(false);
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log("file",file);
@@ -79,6 +81,14 @@ const FileUpload = ({account, contract, provider}) => {
     }
     return (
         <>
+        {!modalOpen && (
+        <button className="share" onClick={() => setModalOpen(true)}>
+          Share
+        </button>
+      )}
+      {modalOpen && (
+        <Modal setModalOpen={setModalOpen} contract={contract}></Modal>
+      )}
         
         <div className='box1'>
           <div className='logo-img'>
@@ -98,6 +108,8 @@ const FileUpload = ({account, contract, provider}) => {
             <button type="submit" className="btn btn-secondary btn-block login" disable={!file}>Submit</button>
             <button className="btn btn-secondary btn-block login" onClick={gotoDetails}>Fill my details</button>
         </form>
+
+
         </div>
         </>
     )
