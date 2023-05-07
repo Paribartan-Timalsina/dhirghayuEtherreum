@@ -27,7 +27,7 @@ function App() {
   const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const provider = ((window.ethereum != null) ? new ethers.providers.Web3Provider(window.ethereum) : ethers.providers.getDefaultProvider());
     const loadProvider = async () => {
       if (provider) {
 
@@ -55,10 +55,8 @@ function App() {
   return (
     <>
     <Navbar/>
-      <h1>Electronic Health Record System</h1>
-      <br></br>
-      <p>Account:{account ? account : "Not Connected"}</p>
-      <br></br>
+      {/* <p>Account:{account ? account : "Not Connected"}</p>
+      <br></br> */}
       {/* <FileUpload account={account} provider={provider} contract={contract}/>
     <Display account={account} contract={contract} /> */}
 
