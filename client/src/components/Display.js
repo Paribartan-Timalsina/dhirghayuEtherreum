@@ -12,20 +12,36 @@ const Display = ({contract,account}) => {
       dataArray=await contract.display(Otheraddress);
       console.log(dataArray)
     }else{
+      console.log(contract);
       dataArray= await contract.display(account);
-      //console.log("DataArray",dataArray);
+      console.log("DataArray",dataArray);
+
     }
     const isEmpty = Object.keys(dataArray).length===0;
 
     if(!isEmpty){
       const str = dataArray.toString();
       const str_array = str.split(",");
-      console.log("str_array",str_array);
+      // console.log(str);
+      // console.log(str_array);
+      const images = str_array.map((item, i) => {
+        return (
+          <a href={item} key={i} target="_blank">
+            <img
+              key={i}
+              src={`https://gateway.pinata.cloud/ipfs/${item.substring(6)}`}
+              alt="new"
+              className="image-list"
+            ></img>
+          </a>
+        );
+      });
+      setData(images);
     }
   };
   return (
     <>
-    <div>Image Display</div>
+    <div>{data}</div>
     <input type="text" className='address' placeholder='Enter Address'/>
     
     <button onClick={getdata}>Get Data</button>

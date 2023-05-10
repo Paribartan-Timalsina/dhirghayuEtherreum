@@ -4,17 +4,22 @@ import { BigNumber } from 'bignumber.js';
 import { useNavigate } from "react-router-dom";
 import PatientIcon from "./PatientIcon"
 import DoctorIcon from "./DoctorIcon"
-const DoctorApointments = ({ account, contract, provider }) => {
+import './Appointments.css'
+
+const Appointments = ({ account, contract, provider }) => {
   const navigate = useNavigate();
-  const[appointmentdates,setAppointmentdates]=useState([])
-  const[ispatient,setaspatient]=useState()
-  const[isdoctor,setasdoctor]=useState()
+  const [appointmentdates, setAppointmentdates] = useState([])
+  const [ispatient, setaspatient] = useState()
+  const [isdoctor, setasdoctor] = useState()
   const [details, setDetails] = useState([]);
   const [error, setError] = useState('');
   const [treatments, setTreatments] = useState([]);
-  useEffect(()=>{
-  //  handleGetDetails();
-  },[])
+  const [patientname,setPatientname]=useState('')
+  const [doctorname,setDoctorname]=useState()
+  const [appointmentsLoaded, setAppointmentsLoaded] = useState(false);
+  useEffect(() => {
+    //handleGetDetails();
+  }, [])
   const handleGetDetails = async () => {
     try {
       console.log(account);
@@ -27,110 +32,106 @@ const DoctorApointments = ({ account, contract, provider }) => {
       console.log(isDoctor);
 
       if (isPatient) {
-        const patientDetails = await contract.getPatientDetails();
-        const patientdiagnosis=await contract.getTreatments();
-        (await contract.getPatientName())
-        setTreatments(patientdiagnosis)
-        console.log(patientdiagnosis)
-        console.log(patientDetails)
-        const modifiedDetails = patientDetails.map((value) =>
-          BigNumber.isBigNumber(value) ? value.toNumber() : value
-        );
-        setDetails(modifiedDetails);
+        const name= await contract.getPatientDetails()
+        console.log(name[0])
+        setPatientname(name[0])
+        try {
+          const response = await axios.post('http://localhost:5000/getappointment', { patientname:name[0] }, {
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            }
+          });
+    
+          console.log(response.data);
+          setAppointmentdates(response.data);
+          setAppointmentsLoaded(true);
+        } catch (error) {
+          console.error(error);
+        }
       } else if (isDoctor) {
-        
-        const doctorDetails = await contract.getDoctorDetails();
-        console.log(doctorDetails)
-        const modifiedDetails = doctorDetails.map((value) =>
-          BigNumber.isBigNumber(value) ? value.toNumber() : value
-        );
-        setDetails(modifiedDetails);
-      } else {
-        
+        const name= await contract.getDoctorDetails()
+        console.log(name[1])
+        setPatientname(name[1])
+        try {
+          const response = await axios.post('http://localhost:5000/getdoctorappointment', { doctname:name[1] }, {
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            }
+          });
+    
+          console.log(response.data);
+          setAppointmentdates(response.data);
+          setAppointmentsLoaded(true);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    else {
         setError('You are neither a patient nor a doctor');
       }
     } catch (error) {
       setError(error.message);
     }
   };
-function editdetails(){
-  if(isdoctor){
-  navigate("/doctorsignup")
-  }
-  else if(ispatient){
-    navigate("/patientsignup")
-  }
-  else{
-    window.alert("You are neither a patient nor a doctor")
-  }
-}
-const cancelAppointment = async (appointmentDay) => {
+
+  const cancelAppointment = async (appointmentDay) => {
     console.log(appointmentDay)
     try {
       const response = await axios.post('http://localhost:5000/deleteappointment', {
-    
-          appointmentDay
-        ,
+        appointmentDay,
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         }
       });
-  
+
       //console.log(response.data);
-     // setAppointmentdates(response.data);
+      // setAppointmentdates(response.data);
     } catch (error) {
       console.error(error);
     }
   };
-    
-const getAppointments=async()=>{
-  try {
-    console.log(details[0])
-    const response = await axios.post('http://localhost:5000/getdoctorappointment', { doctname: details[1] }, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      }
-    });
-    
-    console.log(response.data);
-    setAppointmentdates(response.data);
-  } catch (error) {
-    console.error(error);
-  }
-  
-}
-  return (
-    <div className="dark-theme">
-      <button onClick={handleGetDetails}>Get Details</button>
-      {error && <div>{error}</div>}
-     
-        {ispatient &&
-        <>
-        
-        
-         <div>
-          <h2>My appointments</h2>
-          <button onClick={getAppointments}>See Appointments</button>
-         </div>
-         <div>
-         {appointmentdates.map(dates=>
-            <>
-            <h4>Doctorname:{dates.doctname}</h4>
-            <h4>Appointment Day:{dates.appointmentday}</h4>
-            <button onClick={()=>cancelAppointment(dates.appointmentday)}>Cancel this appointment</button>
-            </>
-         )}
-         
-         </div>
-         </>
+
+  const getAppointments = async () => {
+    try {
+      const response = await axios.post('http://localhost:5000/getappointment', { patientname:patientname }, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
         }
-       
-        
-       
+      });
+
+      console.log(response.data);
+      setAppointmentdates(response.data);
+      setAppointmentsLoaded(true);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  
+
+  return (
+    <div className="container">
+      <DoctorIcon />
+      <h2>My Appointments</h2>
+      {isdoctor && appointmentsLoaded ? (
+        <div className="appointment-dates">
+          {appointmentdates.map(dates => (
+            <div className="appointment-date">
+              <h4 className="doctor-name">Patient name: {dates.doctname}</h4>
+              <h4 className="appointment-day">Appointment Day: {dates.appointmentday}</h4>
+              <button className="cancel-appointment-btn" onClick={() => cancelAppointment(dates.appointmentday)}>Cancel this appointment</button>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <button onClick={handleGetDetails}>See Appointments</button>
+      )}
     </div>
   );
 };
 
-export default DoctorApointments;
+export default Appointments;

@@ -17,7 +17,7 @@ function DoctorIcon() {
         <div className="line"></div>
       </div>
       <ul className={`nav-links ${showMenu ? "show" : ""}`}>
-        <li><a href="/getdetails">My details</a></li>
+        <li><a href="/details">My details</a></li>
         <li><a href="/booking">My Booking</a></li>
         <li><a href="/patientappointments">Patient Appointments</a></li>
         

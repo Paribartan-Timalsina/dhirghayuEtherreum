@@ -1,22 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import FullCalendar from '@fullcalendar/react';
 import './Doctorbook.css';
-
+import axios from 'axios';
+import moment from "moment"
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { BigNumber } from 'ethers';
-import Icon from "./PatientIcon"
+import DoctorIcon from "./DoctorIcon"
+
 function Doctorbook({account,contract}) {
  
   const [details, setDetails] = useState([]);
   const [availableDates, setAvailableDates] = useState([]);
+  const [alldates, setallDates] = useState([]);
   const [name,setName]=useState('')
   const [major,setMajor]=useState('')
   useEffect(() => {
     getName()
+    
     console.log(details[0])
      console.log(availableDates);
    }, [availableDates]);
+   
   const getName=async ()=>{
     console.log(account)
     const isPatient = await contract.isPatients(account);
@@ -34,6 +39,17 @@ function Doctorbook({account,contract}) {
       );
       setDetails(modifiedDetails);
     } else if (isDoctor) {
+      const doctorname = await contract.getDoctorName();
+      try {
+        const response = await axios.post('http://localhost:5000/alldates', { name:doctorname });
+        const dates = response.data;
+        const formattedDate = dates.map(date=>moment(date, "MMM DD YYYY").format("YYYY-MM-DD"));
+        setallDates(formattedDate); 
+        // do something with the dates
+      } catch (error) {
+        console.log(error);
+        // handle the error
+      }
       const doctorDetails = await contract.getDoctorDetails();
       setName(doctorDetails[1]);
       setMajor(doctorDetails[6]);
@@ -45,11 +61,28 @@ function Doctorbook({account,contract}) {
       console.log('You are neither a patient nor a doctor');
     }
   }
-
-  function handleDateSelect(info) {
+  // const handleGetAllDates = async () => {
+  //   try {
+  //     const response = await axios.post('http://localhost:5000/alldates', { name });
+  //     const dates = response.data;
+  //     const formattedDate = dates.map(date=>moment(date, "MMM DD YYYY").format("YYYY-MM-DD"));
+  //     setallDates(formattedDate); 
+  //     // do something with the dates
+  //   } catch (error) {
+  //     console.log(error);
+  //     // handle the error
+  //   }
+  // }
+  const  handleDateSelect=async (info)=> {
+    
     // Get the selected date in the local time zone
     const selectedDate = new Date(info.start.valueOf() - info.start.getTimezoneOffset() * 60000).toISOString().substring(0, 10);
     // Check if the selected date already exists in the array
+    if (alldates.includes(selectedDate)) {
+      window.alert("The date is already booked by you")
+      return;
+    }
+   
     if (availableDates.includes(selectedDate)) {
       window.alert("The date is already selected")
       return;
@@ -89,15 +122,26 @@ function Doctorbook({account,contract}) {
     });
   }
 
+  const renderEventContent = (eventInfo) => {
+  // check if the event's date is in the list of availableDates
+  const isBooked = alldates.includes(eventInfo.event.start.toISOString().substring(0, 10));
   
+  // set the background color based on whether the date is booked or not
+  const backgroundColor = isBooked ? 'red' : 'green';
+
+  return {
+    html: `<div style="background-color: ${backgroundColor};">${eventInfo.dayNumberText}</div>`
+  };
+};
 
   return (
     
     <div className="wrapper">
-    <Icon/>
+    <DoctorIcon/>
      <FullCalendar className='fc'
   plugins={[ dayGridPlugin, interactionPlugin ]}
   selectable={true}
+  eventContent={renderEventContent}
   select={handleDateSelect}
   views={{
     month: {
