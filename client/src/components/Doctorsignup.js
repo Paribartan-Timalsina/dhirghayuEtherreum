@@ -34,7 +34,7 @@ try{
   }
 
   return (
-    <div className='wrapper'>
+    <div className='wrapper3'>
      <div className='logo-img'>
           <img src={logo} className="Web-Logo" alt="logo" />
     </div>
@@ -82,7 +82,7 @@ try{
           onChange={(e) => setMajor(e.target.value)} />
         </label> 
 
-        <input type="submit" value="Register" className="btn btn-secondary btn-block login" />
+        <input type="submit" value="Register" className="btn5" />
       </form>
     </div>
   );

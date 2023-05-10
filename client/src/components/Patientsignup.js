@@ -113,7 +113,7 @@ const Patientsignup = ({account,contract,provider}) => {
         </label>
         <br />
       </div>
-        <input type="submit" value="Register" className="btn btn-secondary btn-block login" />
+        <input type="submit" value="Register" className="btn4" />
       </form>
     </div>
   )

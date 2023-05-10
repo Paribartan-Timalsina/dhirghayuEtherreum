@@ -44,8 +44,9 @@
     margin-top: 10px;
 }
 
-.btn
+/* .btn
 {
+  margin-right: 20rem;
   margin-left: auto;
   margin-right: auto;
   font-size: 1.1rem;
@@ -63,4 +64,16 @@
 
 .btn:hover{
   background: rgb(17,107,143,0.8);
+} */
+
+@media screen and (min-width: 768px) {
+  .searchbar {
+    margin: 10px 0;
+  }
+  
+  .btn {
+    width: auto;
+    max-width: none;
+    margin-right: 0;
+  }
 }

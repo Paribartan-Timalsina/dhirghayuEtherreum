@@ -51,7 +51,7 @@
     }
      */
 
-button.btn
+/* button.btn
 {
     margin-inline: auto;
     font-size: 1.2rem;
@@ -65,10 +65,10 @@ button.btn
     cursor:pointer;
     background:rgb(17,107,143);
   }
-  
+
   .btn:hover{
     background: rgb(17,107,143,0.8);
-  } 
+  }  */
 
 
 h1 {

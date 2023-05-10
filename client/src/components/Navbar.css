@@ -60,7 +60,7 @@
    @media (max-width:768px) {
     .nav-links{
       position:absolute;
-      background:#ffffff;
+      background:#cac4c4;
       height:100vh;
       width:30vh;
       top:0;
@@ -92,7 +92,7 @@
     .line1, .line2, .line3 {
       width: 25px;
       height: 3px;
-      background-color: #fff;
+      background-color: #cac4c4;
       margin: 5px;
       transition: all 0.3s ease;
     }

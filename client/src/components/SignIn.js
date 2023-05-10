@@ -123,7 +123,7 @@ onSignIn()
         placeholder='Your Code'
          value={code} onChange={(e)=>{setCode(e.target.value)}} ></input>
         
-        <input type="submit" value="Login" className="btn btn-secondary btn-block login" />
+        <input type="submit" value="Login" className="btn1" />
         
         <div class='member'>
         Don't have an account? <a href="/signup">Click to create</a>

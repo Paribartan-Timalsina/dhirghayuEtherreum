@@ -8,20 +8,22 @@ function Home() {
   <div>
     <div className='header'>
 
-        <section className="hero">
-          <div className="hero-content">
+          <div className="hero">
+
+            <div className='hero-content'>
+
             <h1>Welcome to Dirghayu</h1>
             <p>a smart approach for EHRs</p>
+
+            </div>
+
             <div className="buttons">
-              <button className='button'>
-                Signup
-              </button>
-              <button className='button'>
-                SignIn
-              </button>
+              <button> <Link to="/signin">Login</Link></button>
+             <button><Link to="/signup">Sign Up</Link></button>
              </div>
+
           </div>
-        </section> 
+
 
 
       <div>

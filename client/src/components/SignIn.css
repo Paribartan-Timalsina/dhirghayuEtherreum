@@ -14,12 +14,11 @@ body{
 
 .wrapper1
 {
-  width: 400px;
-  /* display: flex; */
-  /* flex-direction: row; */
+  margin-top: 60px;
+  width:400px;
   margin-left: auto;
   margin-right: auto;
-  padding:4rem 1rem;
+  padding:2rem 1rem;
   background-color: #fff;
   border-radius: center;
   box-shadow: 0 20px 35px rgba(0,0,0,0.1);
@@ -27,10 +26,14 @@ body{
 
 .wrapper1 img
 {
-  margin-inline: auto;
-  margin-bottom: 1rem;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  width: 100px;
+  align-content: center; 
+  padding-bottom: 2px;
+  margin-bottom: 3px;
 }
-
 
 .wrapper1 h1
 {
@@ -53,35 +56,36 @@ form input
   margin-left: 1rem;
   background: #e4e4e4;
 }
-button.btn
+.wrapper1 .btn1
 {
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 1.1rem;
+
     font-size: 1.2rem;
-    margin-top: 1.8rem;
+    margin-top: 2.5rem;
     padding: 11px 0;
     border-radius: 10px;
     outline:none;
     border:none;
-    width: 60%;
+    width: 90%;
     color:#fff;
     cursor:pointer;
     background:rgb(17,107,143);
   }
   
-  .btn:hover{
+  .btn1:hover{
     background: rgb(17,107,143,0.8);
-  }
+  } 
 
 .member
 {
-  font-size:1rem;
-  margin-top:0.6rem;
+  font-size:0.8rem;
+  margin-top:0.4rem;
   color:#636363;
-  margin-left: 1.2rem;
+  margin-left: 4.6rem;
 }
 
 .member a{
+  font-size: small;
   text-decoration: none;
   color: Red;
   }

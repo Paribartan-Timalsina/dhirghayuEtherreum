@@ -54,7 +54,7 @@ function App() {
   }, []);
   return (
     <>
-    <Navbar/>
+      <Navbar/>
       {/* <p>Account:{account ? account : "Not Connected"}</p>
       <br></br> */}
       {/* <FileUpload account={account} provider={provider} contract={contract}/>

@@ -89,7 +89,7 @@ const buttonClicked=(e)=>{
 }
 
 return (
-  <div className='wrapper'>
+  <div className='box2'>
       <div className='logo-img'>
           <img src={logo} className="Web-Logo" alt="logo" />
     </div>
@@ -102,7 +102,7 @@ return (
       <input type='text' placeholder='Your Code ' value={code} onChange={(e) => { setCode(e.target.value) }} ></input>
       {/* <input type="submit" value="Sign Up"/> */}
     
-    <input type="submit" value="Sign Up" className="btn btn-secondary btn-block login" />
+    <input type="submit" value="Sign Up" className=" btn2 " />
     </form>
   </div>
 )
