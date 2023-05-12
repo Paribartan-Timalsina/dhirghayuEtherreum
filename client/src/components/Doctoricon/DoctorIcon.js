@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Navbar.css';
+import '../Navbar/Navbar.js';
 
 function DoctorIcon() {
   const [showMenu, setShowMenu] = useState(false);

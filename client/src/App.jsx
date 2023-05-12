@@ -2,24 +2,24 @@ import Upload from "./artifacts/contracts/Upload.sol/Upload.json"
 import { useState, useEffect } from "react";
 import { ethers } from "ethers";
 import { Routes, Route } from "react-router-dom"
-import FileUpload from "./components/FileUpload";
-import Display from "./components/Display";
-import Appointments from  "./components/Appointments";
-import Treatments from "./components/Treatments";
-import Navbar from "./components/Navbar";
-import HomePage from "./components/Home";
-import Modal from "./components/Modal"
+import FileUpload from "./components/FileUpload/FileUpload.js";
+import Display from "./components/Display/Display.js";
+import Appointments from  "./components/Appointment/Appointments.js";
+import Treatments from "./components/Treatments/Treatments";
+import Navbar from "./components/Navbar/Navbar";
+import HomePage from "./components/Home/Home";
+import Modal from "./components/Modal/Modal"
 import './App.css';
-import Patientsignup from "./components/Patientsignup";
-import Doctorsignup from "./components/Doctorsignup";
-import Getdetails from "./components/Getdetails";
-import SignIn from "./components/SignIn";
-import SignUp from "./components/SignUp";
-import Doctorbook from "./components/Doctorbook";
-import DoctorAppointments from "./components/DoctorAppointments";
-import Patientbook from "./components/Patientbook";
-import Medications from "./components/Medications.jsx";
-import Icon from "./components/PatientIcon";
+import Patientsignup from "./components/Patientsignup/Patientsignup";
+import Doctorsignup from "./components/Doctorsignup/Doctorsignup";
+import Getdetails from "./components/Getdetails/Getdetails";
+import SignIn from "./components/SignIn/SignIn";
+import SignUp from "./components/SignUp/SignUp";
+import Doctorbook from "./components/Doctorbook/Doctorbook";
+import DoctorAppointments from "./components/DoctorAppointments/DoctorAppointments";
+import Patientbook from "./components/Patientbook/Patientbook";
+import Medications from "./components/Medications/Medications";
+import Icon from "./components/Doctoricon/PatientIcon";
 function App() {
   const [account, setAccount] = useState("");
   const [contract, setContract] = useState(null);
