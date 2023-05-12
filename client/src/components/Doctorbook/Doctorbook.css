@@ -107,7 +107,7 @@
   cursor: default;
 }
 
-/* .btn {
+.btn1 {
   width: 300px;
   align-items: center;
   margin-inline: auto;
@@ -120,6 +120,6 @@
   padding: 10px 20px;
 }
 
-.btn:hover {
+.btn1:hover {
     background: rgb(17,107,143,0.8);
-} */
+}

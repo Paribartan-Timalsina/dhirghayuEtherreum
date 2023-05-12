@@ -40,32 +40,32 @@ try{
     </div>
       <h1>Doctor Details</h1>
       <form onSubmit={handleSubmit}>
-        <label className="InputBox">
+        <label className="InputBox1">
           <span>IC Number</span>
           <input type="text" value={ic} onChange={(e) => setIC(e.target.value)} />
         </label>
         <br />
-        <label className="InputBox">
+        <label className="InputBox1">
           <span>Name</span>
           <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
         </label>
         <br />
-        <label className="InputBox">
+        <label className="InputBox1">
           <span>Phone</span>
           <input type="text" value={phone} onChange={(e) => setPhone(e.target.value)} />
         </label>
         <br />
-        <label className="InputBox">
+        <label className="InputBox1">
           <span>Gender</span>
           <input type="text" value={gender} onChange={(e) => setGender(e.target.value)} />
         </label>
         <br />
-        <label className="InputBox">
+        <label className="InputBox1">
           <span>Date of Birth</span>
           <input type="date" value={dob} onChange={(e) => setDob(e.target.value)} />
         </label>
         <br />
-        <label className="InputBox">
+        <label className="InputBox1">
           <span>Qualification</span>
           <input
             type="text"
@@ -74,7 +74,7 @@ try{
           />
          </label>
         <br />
-        <label className="InputBox">
+        <label className="InputBox1">
           <span>Major</span>
           <input 
           type="text" 

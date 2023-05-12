@@ -147,14 +147,14 @@ return (
     </div>
     <Icon />
     <h1>
-      Doctor Booking
+      Patient Booking
     </h1>
     <form className='searchbar'>
       <input onChange={handleChange} value={state.query} type="search" placeholder='Search Doctor' />
     </form>
     <ul>
       {(state.query === '' ? "" : state.list.map(post => {
-        return <><button key={post} onClick={() => getDoctordetails(post)}>{post}</button></>
+        return <><button key={post} onClick={() => getDoctordetails(post)} className="doctor-btn">{post}</button></>
       }))}
     </ul>
     {details &&

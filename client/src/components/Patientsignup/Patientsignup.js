@@ -2,8 +2,9 @@
 import React, { useState } from "react";
 import './PatientSignUp.css';
 import logo from '../Assets/logo.png';
-
+import { useNavigate } from "react-router-dom";
 const Patientsignup = ({account,contract,provider}) => {
+  const navigate = useNavigate();
     const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [gender, setGender] = useState("");
@@ -36,6 +37,7 @@ const Patientsignup = ({account,contract,provider}) => {
         };
 
         await contract.setPatientDetails(patientDetails);
+        navigate("/fileupload")
       
     } catch (err) {
       console.error(err);
@@ -52,49 +54,49 @@ const Patientsignup = ({account,contract,provider}) => {
     </h1>
       <form onSubmit={handleSubmit}>
       <div className="patient-details"> 
-        <label className="input-box">
+        <label className="input-box1">
           <span>Name</span>
           <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
         </label>
         <br />
-        <label className="input-box">
+        <label className="input-box1">
          <span> Phone</span> 
           <input type="number" value={phone} onChange={(e) => setPhone(e.target.value)} />
         </label>
         <br />
-        <label className="input-box">
+        <label className="input-box1">
           <span>Gender</span>
           <input type="text" value={gender} onChange={(e) => setGender(e.target.value)} />
         </label>
         <br />
-        <label className="input-box">
+        <label className="input-box1">
           <span>Date of Birth</span>
           <input type="date" value={dob} onChange={(e) => setDob(e.target.value)} />
         </label>
         <br />
-        <label className="input-box">
+        <label className="input-box1">
           <span>Height</span>
           <input type="number" value={height} onChange={(e) => setHeight(e.target.value)} />
         </label>
         <br />
-        <label className="input-box">
+        <label className="input-box1">
           <span>Weight</span>
           <input type="number" value={weight} onChange={(e) => setWeight(e.target.value)} />
         </label>
         <br />
-        <label className="input-box">
+        <label className="input-box1">
           <span>House Address</span>
           <input type="text" value={houseaddr} onChange={(e) => setHouseaddr(e.target.value)} />
         </label>
         <br />
-        <label className="input-box">
+        <label className="input-box1">
           <span>Blood Group</span>
           <input type="text" value={bloodgroup} onChange={(e) => setBloodgroup(e.target.value)} />
         </label>
         <br />
         
       
-        <label className="input-box">
+        <label className="input-box1">
           <span>Emergency Contact Name</span>
           <input
             type="text"
@@ -103,7 +105,7 @@ const Patientsignup = ({account,contract,provider}) => {
           />
         </label>
         <br />
-        <label className="input-box">
+        <label className="input-box1">
           <span>Emergency Contact</span>
           <input
             type="number"

@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import logo from '../Assets/logo.png';
 import './FileUpload.css';
-
+import PatientIcon from "../Doctoricon/PatientIcon"
+import DoctorIcon from "../Doctoricon/DoctorIcon"
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import Modal from "../Modal/Modal"
@@ -94,9 +95,7 @@ const FileUpload = ({account, contract, provider}) => {
       )}
         
         <div className='box1'>
-          <div className='logo-img'>
-            <img src={logo} className="Web-Logo" alt="logo" />
-          </div>
+        {  <PatientIcon/>}
         <h1>Report Upload</h1>
         <form onSubmit={handleSubmit}>
             <label htmlFor="file-upload" >

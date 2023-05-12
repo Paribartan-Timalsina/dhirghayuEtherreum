@@ -63,7 +63,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<HomePage account={account} contract={contract} provider={provider} />} />
         <Route path="/fileupload" element={<><FileUpload account={account} provider={provider} contract={contract} />
-          <Display account={account} contract={contract} /></>} />
+          </>} />
         <Route exact path="/signup" element={<SignUp account={account} contract={contract} provider={provider} />} />
         <Route exact path="/signin" element={<SignIn account={account} contract={contract} provider={provider} />} />
         <Route exact path="/patientsignup" element={<Patientsignup account={account} contract={contract} provider={provider} />} />
@@ -76,6 +76,7 @@ function App() {
         <Route exact path="/patientappointments" element={<DoctorAppointments account={account} contract={contract} />} />
         <Route exact path="/icons" element={<Icon account={account} contract={contract} />} />
         <Route exact path="/treatments" element={<Treatments account={account} contract={contract} />} />
+        <Route exact path="/display" element={<Display account={account} contract={contract}/>} />
       </Routes>
     </>
   );

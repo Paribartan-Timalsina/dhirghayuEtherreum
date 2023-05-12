@@ -65,6 +65,23 @@
 .btn:hover{
   background: rgb(17,107,143,0.8);
 } */
+.doctor-btn {
+  background-color: #008CBA;
+  border: none;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.doctor-btn:hover {
+  background-color: #005F73;
+}
 
 @media screen and (min-width: 768px) {
   .searchbar {
