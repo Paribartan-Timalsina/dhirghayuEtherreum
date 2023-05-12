@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from "axios"
 import { BigNumber } from 'bignumber.js';
 import { useNavigate } from "react-router-dom";
-import PatientIcon from "./PatientIcon"
-import DoctorIcon from "./DoctorIcon"
+import PatientIcon from "../Doctoricon/PatientIcon"
+import DoctorIcon from "../Doctoricon/DoctorIcon"
 import './Appointments.css'
 
 const Appointments = ({ account, contract, provider }) => {
@@ -50,25 +50,9 @@ const Appointments = ({ account, contract, provider }) => {
           console.error(error);
         }
       } else if (isDoctor) {
-        const name= await contract.getDoctorDetails()
-        console.log(name[1])
-        setPatientname(name[1])
-        try {
-          const response = await axios.post('http://localhost:5000/getdoctorappointment', { doctname:name[1] }, {
-            headers: {
-              'Content-Type': 'application/json',
-              'Accept': 'application/json'
-            }
-          });
-    
-          console.log(response.data);
-          setAppointmentdates(response.data);
-          setAppointmentsLoaded(true);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-    else {
+        const name= await contract.getDoctorName()
+        setDoctorname(name)
+      } else {
         setError('You are neither a patient nor a doctor');
       }
     } catch (error) {
@@ -115,13 +99,13 @@ const Appointments = ({ account, contract, provider }) => {
 
   return (
     <div className="container">
-      <DoctorIcon />
+      <PatientIcon />
       <h2>My Appointments</h2>
-      {isdoctor && appointmentsLoaded ? (
+      {ispatient && appointmentsLoaded ? (
         <div className="appointment-dates">
           {appointmentdates.map(dates => (
             <div className="appointment-date">
-              <h4 className="doctor-name">Patient name: {dates.doctname}</h4>
+              <h4 className="doctor-name">Doctor name: {dates.doctname}</h4>
               <h4 className="appointment-day">Appointment Day: {dates.appointmentday}</h4>
               <button className="cancel-appointment-btn" onClick={() => cancelAppointment(dates.appointmentday)}>Cancel this appointment</button>
             </div>

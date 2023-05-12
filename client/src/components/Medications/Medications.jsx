@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import logo from '../Assets/logo.png';
 import './medication.css';
 import { ethers } from 'ethers';
-import Icon from './PatientIcon';
+import Icon from '../Doctoricon/PatientIcon';
 
 
 function Medications({account,contract,provider}) {

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios"
+import './treatment.css';
 import { BigNumber } from 'bignumber.js';
 import { useNavigate } from "react-router-dom";
 const Getdetails = ({ account, contract, provider }) => {

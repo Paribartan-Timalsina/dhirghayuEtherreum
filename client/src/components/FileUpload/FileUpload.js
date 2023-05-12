@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import logo from '../Assets/logo.png';
 import './FileUpload.css';
-import Navbar from './Navbar';
+
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
-import Modal from "./Modal"
-import Hamburger from './Hamburger';
+import Modal from "../Modal/Modal"
+import Hamburger from '../Hamburger/Hamburger';
 const FileUpload = ({account, contract, provider}) => {
     const navigate=useNavigate()
     const [file, setFile] = useState(null);
@@ -80,11 +80,14 @@ const FileUpload = ({account, contract, provider}) => {
         e.preventDefault();
     }
     return (
-        <>
-        {!modalOpen && (
+      <>
+      {!modalOpen && (
+        <div className='first'>
         <button className="share" onClick={() => setModalOpen(true)}>
           Share
         </button>
+
+        </div>
       )}
       {modalOpen && (
         <Modal setModalOpen={setModalOpen} contract={contract}></Modal>

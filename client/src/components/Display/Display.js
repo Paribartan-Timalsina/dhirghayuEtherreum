@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-
+import './display.css';
 const Display = ({contract,account}) => {
   const [data,setData]=useState("");
 
@@ -40,12 +40,12 @@ const Display = ({contract,account}) => {
     }
   };
   return (
-    <>
+    <div class='motherbox'>
     <div>{data}</div>
     <input type="text" className='address' placeholder='Enter Address'/>
     
-    <button onClick={getdata}>Get Data</button>
-    </>
+    <button className='getdatabtn' onClick={getdata}>Get Data</button>
+    </div>
   )
 }
 

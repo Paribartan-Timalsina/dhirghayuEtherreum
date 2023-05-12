@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from "axios"
 import { BigNumber } from 'bignumber.js';
 import { useNavigate } from "react-router-dom";
-import PatientIcon from "./PatientIcon"
-import DoctorIcon from "./DoctorIcon"
+import PatientIcon from "../Doctoricon/PatientIcon"
+import DoctorIcon from "../Doctoricon/DoctorIcon"
 import "./Getdetails.css" // import your CSS file here
 
 const Getdetails = ({ account, contract, provider }) => {
@@ -116,6 +116,7 @@ const getAppointments=async()=>{
       <h3 className="patient-details__info__item">Emergency Contact: {details[9]}</h3>
     </div>
     <div>
+    
         <h1>My Treatments</h1>
         {treatments.map((treatment, index) => (
   <div key={index} class="treatment-container">

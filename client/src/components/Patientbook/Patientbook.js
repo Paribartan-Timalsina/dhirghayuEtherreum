@@ -3,14 +3,14 @@ import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import './Patientbook.css';
 import logo from '../Assets/logo.png';
-import Icon from "./PatientIcon"
+import Icon from "../Doctoricon/PatientIcon"
 import interactionPlugin from '@fullcalendar/interaction';
 import { BigNumber } from 'bignumber.js';
 import axios from "axios"
 import moment from "moment"
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import './Calendar.css'; // Import your custom CSS
+import '../Calendar/Calendar'; // Import your custom CSS
 
 import { Link } from 'react-router-dom';
 function Patientbook({ account, contract }) {
