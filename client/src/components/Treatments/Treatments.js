@@ -75,7 +75,7 @@ function editdetails(){
 
 
   return (
-    <div className="dark-theme">
+    <div className='box4'>
       <button onClick={handleGetDetails}>Get Details</button>
       {/* {error && <div>{error}</div>} */}
      
@@ -102,10 +102,7 @@ function editdetails(){
       </div>
          
          </>
-        }
-        
-        
-        
+        }  
         <button onClick={editdetails}>Edit details</button>
     </div>
   );

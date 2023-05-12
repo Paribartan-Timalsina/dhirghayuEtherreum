@@ -8,13 +8,14 @@
   font-family: "Poppins",sans-serif;
 }
 
-body{
-  background:#dfe9f5;
-}
-
 .box4
 {
-    width: 400px;
-    color: #fff;
-   height: 300px; 
-}
+  margin-top: 60px;
+  width:400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding:2rem 1rem;
+  background-color: #fff;
+  border-radius: center;
+  box-shadow: 0 20px 35px rgba(0,0,0,0.1);
+}  
