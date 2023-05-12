@@ -57,14 +57,14 @@ function Medications({account,contract,provider}) {
       </label>
       <br />
       <label className='InputBox'>
-  Status
-  <select value={status ? 'Cured' : 'Not Cured'} onChange={e => setStatusValue(e.target.value)}>
-    <option value="Not Cured">Not Cured</option>
-    <option value="Cured">Cured</option>
-  </select>
-</label>
+      Status
+      <select value={status ? 'Cured' : 'Not Cured'} onChange={e => setStatusValue(e.target.value)}>
+        <option value="Not Cured">Not Cured</option>
+        <option value="Cured">Cured</option>
+      </select>
+    </label>
       <br />
-      <button onClick={addTreatment} className='btn'>Add Treatment</button>
+      <button onClick={addTreatment} className='btn9'>Add Treatment</button>
     </div>
   );
 }

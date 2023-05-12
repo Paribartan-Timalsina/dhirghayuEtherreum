@@ -94,7 +94,7 @@ const getAppointments=async()=>{
   
 }
   return (
-    <div className="container">
+    <div className="container1">
     {ispatient && <PatientIcon/>}
     {isdoctor&&<DoctorIcon/>}
       <button  className='button' onClick={handleGetDetails}>Get Details</button>

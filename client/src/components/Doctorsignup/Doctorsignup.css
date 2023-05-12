@@ -11,13 +11,14 @@
 .wrapper3
 {
   margin-top: 30px;
-  width: 600px;
+  width: 700px;
   margin-left: auto;
   margin-right: auto;
   padding:2rem 1rem;
   background-color: #fff;
   border-radius: center;
   box-shadow: 0 20px 35px rgba(0,0,0,0.1);
+  height: 760px;
 }
 
 
@@ -72,9 +73,10 @@ input[type="date"]::placeholder {
     color:#fff;
     cursor:pointer;
     background:rgb(17,107,143);
+    margin-bottom: 20px;
   }
   
-  .btn5:hover:hover{
+  .btn5:hover{
     background: rgb(17,107,143,0.8);
   }
 

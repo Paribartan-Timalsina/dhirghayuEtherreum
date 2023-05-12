@@ -20,11 +20,12 @@
 }
 
 
-.address{
-        width:70%;
-        outline:none;
-        border:1px solid #fff;
-        padding:20px 20px;
+.address
+{
+      width:70%;
+      outline:none;
+      border:1px solid #fff;
+      padding:20px 20px;
         border-radius: 5px;
         margin-left: auto;
         margin-right: auto;

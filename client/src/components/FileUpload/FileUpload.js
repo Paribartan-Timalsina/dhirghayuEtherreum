@@ -82,12 +82,12 @@ const FileUpload = ({account, contract, provider}) => {
     return (
       <>
       {!modalOpen && (
-        <div className='first'>
+        <>
         <button className="share" onClick={() => setModalOpen(true)}>
           Share
         </button>
 
-        </div>
+        </>
       )}
       {modalOpen && (
         <Modal setModalOpen={setModalOpen} contract={contract}></Modal>

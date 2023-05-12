@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios"
-import './treatment.css';
+import './Treatments.css';
 import { BigNumber } from 'bignumber.js';
 import { useNavigate } from "react-router-dom";
 const Getdetails = ({ account, contract, provider }) => {
@@ -75,7 +75,7 @@ function editdetails(){
 
 
   return (
-    <div className="dark-theme">
+    <div className="wrapper5">
       <button onClick={handleGetDetails}>Get Details</button>
       {/* {error && <div>{error}</div>} */}
      
@@ -105,8 +105,7 @@ function editdetails(){
         }
         
         
-        
-        <button onClick={editdetails}>Edit details</button>
+        <button className='btn' onClick={editdetails}>Edit details</button>
     </div>
   );
 };

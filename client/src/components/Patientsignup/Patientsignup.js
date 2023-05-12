@@ -42,8 +42,7 @@ const Patientsignup = ({account,contract,provider}) => {
     }
   };
   return (
-    <div className="container">
-
+    <div className="wrapper4">
     <div className='logo-img'>
           <img src={logo} className="Web-Logo" alt="logo" />
     </div>
@@ -113,7 +112,7 @@ const Patientsignup = ({account,contract,provider}) => {
         </label>
         <br />
       </div>
-        <input type="submit" value="Register" className="btn4" />
+        <input type="submit" value="Register" className="btn10" />
       </form>
     </div>
   )

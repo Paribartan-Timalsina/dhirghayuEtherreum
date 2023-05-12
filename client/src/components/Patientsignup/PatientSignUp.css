@@ -8,7 +8,7 @@
   font-family: "Poppins",sans-serif;
 }
 
-.container
+.wrapper4
 {
   margin-top: 30px;
   width:800px;
@@ -21,7 +21,7 @@
 }
 
 
-.container img
+.wrapper4 img
 {
   display: block;
   margin-right: auto;
@@ -33,7 +33,7 @@
   margin-top: 0px;
 }
 
-.container h1{
+.wrapper4 h1{
 
   text-align: center;
   font-size:1.7rem;
@@ -42,9 +42,9 @@
 
 }
 
-form input
+.patient-details input[type]
 {
-  width:92%;
+  width: 700px;
   outline:none;
   border:1px solid #fff;
   padding:12px 20px;
@@ -54,31 +54,27 @@ form input
   background: #e4e4e4;
 }
 
-.wrapper form .user-details
-{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-
+input[type="date"]::placeholder {
+  color: #ff0808;
 }
 
-.btn4
+.btn10
 {
-
-    margin-left: 150px;
-    margin-right: auto;
-    font-size: 1.2rem;
-    margin-top: 1.8rem;
-    padding: 11px 0;
-    border-radius: 10px;
-    outline:none;
-    border:none;
-    width: 60%;
-    color:#fff;
-    cursor:pointer;
-    background:rgb(17,107,143);
-  }
+  margin-left: 110px;
+  margin-right: auto;
+  font-size: 1.2rem;
+  margin-top: 2.2rem;
+  padding: 11px 0;
+  border-radius: 10px;
+  outline:none;
+  border:none;
+  width: 60%;
+  color:#fff;
+  cursor:pointer;
+  background:rgb(17,107,143);
+  margin-bottom: 20px;
+}
   
-  .btn4:hover:hover{
+  .btn10:hover{
     background: rgb(17,107,143,0.8);
   }

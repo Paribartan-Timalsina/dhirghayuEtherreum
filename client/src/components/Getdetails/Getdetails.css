@@ -3,6 +3,7 @@
   .details h1 {
     font-size: 28px;
     margin-bottom: 10px;
+    margin-top: 10px;
   }
   
   .details h2 {
@@ -10,8 +11,10 @@
     margin-bottom: 5px;
   }
   .patient-details {
+    width: 400px;
     background-color: #f7f7f7;
     padding: 20px;
+    border: 5px;
     border-radius: 5px;
   }
   .patient-details__header {
@@ -19,16 +22,17 @@
     margin-bottom: 20px;
   }
   .patient-details__info {
+    margin-left: 60px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 10px; 
   }
   .patient-details__info__item {
-    font-size: 18px;
-    margin: 0;
+    font-size: 16px;
+    margin-bottom:10px;
   }
   .button {
-    background-color: #4CAF50;
+    background-color:rgb(17,107,143) ;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -37,10 +41,10 @@
     cursor: pointer;
     font-size: 16px;
   }
-  
+/*   
   .button:hover {
-    background-color: #3e8e41;
-  }
+    background-color: rgb(17,107,143,0.8); ;
+  } */
   
   .icon {
     margin-top: 20px;
