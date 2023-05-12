@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import logo from '../Assets/logo.png';
 import './FileUpload.css';
-import Navbar from './Navbar';
+import PatientIcon from "../Doctoricon/PatientIcon"
+import DoctorIcon from "../Doctoricon/DoctorIcon"
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
-import Modal from "./Modal"
-import Hamburger from './Hamburger';
+import Modal from "../Modal/Modal"
+import Hamburger from '../Hamburger/Hamburger';
 const FileUpload = ({account, contract, provider}) => {
     const navigate=useNavigate()
     const [file, setFile] = useState(null);
@@ -80,20 +81,21 @@ const FileUpload = ({account, contract, provider}) => {
         e.preventDefault();
     }
     return (
-        <>
-        {!modalOpen && (
+      <>
+      {!modalOpen && (
+        <div className='first'>
         <button className="share" onClick={() => setModalOpen(true)}>
           Share
         </button>
+
+        </div>
       )}
       {modalOpen && (
         <Modal setModalOpen={setModalOpen} contract={contract}></Modal>
       )}
         
         <div className='box1'>
-          <div className='logo-img'>
-            <img src={logo} className="Web-Logo" alt="logo" />
-          </div>
+        {  <PatientIcon/>}
         <h1>Report Upload</h1>
         <form onSubmit={handleSubmit}>
             <label htmlFor="file-upload" >

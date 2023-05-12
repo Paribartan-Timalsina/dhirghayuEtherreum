@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import FullCalendar from '@fullcalendar/react';
-import './Doctorbook.css';
+import  './Doctorbook.css';
 import axios from 'axios';
 import moment from "moment"
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { BigNumber } from 'ethers';
-import DoctorIcon from "./DoctorIcon"
+import DoctorIcon from "../Doctoricon/DoctorIcon"
 
 function Doctorbook({account,contract}) {
  
@@ -136,7 +136,7 @@ function Doctorbook({account,contract}) {
 
   return (
     
-    <div className="wrapper">
+    <div className='wrapper'>
     <DoctorIcon/>
      <FullCalendar className='fc'
   plugins={[ dayGridPlugin, interactionPlugin ]}
@@ -156,7 +156,7 @@ function Doctorbook({account,contract}) {
   defaultView="month"
 />
 
-      <button onClick={handleSaveAvailability} className='btn'>Save Availability</button>
+      <button onClick={handleSaveAvailability} className='btn1'>Save Availability</button>
     </div>
   );
 }
