@@ -4,6 +4,7 @@ import { BigNumber } from 'bignumber.js';
 import { useNavigate } from "react-router-dom";
 import PatientIcon from "../Doctoricon/PatientIcon"
 import DoctorIcon from "../Doctoricon/DoctorIcon"
+import logo from '../Assets/logo.png';
 import "./Getdetails.css" // import your CSS file here
 
 const Getdetails = ({ account, contract, provider }) => {
@@ -95,9 +96,13 @@ const getAppointments=async()=>{
 }
   return (
     <div className="container1">
+    <div className='logo-img'>
+          <img src={logo} className="Web-Logo" alt="logo" />
+    </div>
+
     {ispatient && <PatientIcon/>}
     {isdoctor&&<DoctorIcon/>}
-      <button  className='button' onClick={handleGetDetails}>Get Details</button>
+      <button  className='button11' onClick={handleGetDetails}>Get Details</button>
       {error && <div>{error}</div>}
      
       {ispatient &&
@@ -156,7 +161,7 @@ const getAppointments=async()=>{
 
         
         
-        <button className='button' onClick={editdetails}>Edit details</button>
+        <button className='button11' onClick={editdetails}>Edit details</button>
     </div>
   );
 };

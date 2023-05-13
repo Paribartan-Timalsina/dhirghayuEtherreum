@@ -20,6 +20,7 @@ function DoctorIcon() {
         <li><a href="/details">My details</a></li>
         <li><a href="/booking">My Booking</a></li>
         <li><a href="/patientappointments">Patient Appointments</a></li>
+        <li><a href="/display">See patients data</a></li>
         
       </ul>
     </nav>

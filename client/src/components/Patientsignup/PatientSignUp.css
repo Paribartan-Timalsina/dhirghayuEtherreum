@@ -41,6 +41,16 @@
   margin-bottom:2rem;
 
 }
+.patient-details
+{
+
+  width: 800px;
+  margin-left: 20px;
+}
+.patient-details span{
+  text-align: left;
+  margin-right: 230px;
+}
 
 .patient-details input[type]
 {
@@ -54,6 +64,9 @@
   background: #e4e4e4;
 }
 
+.patient-details label{
+    margin-right: 30px;
+}
 input[type="date"]::placeholder {
   color: #ff0808;
 }

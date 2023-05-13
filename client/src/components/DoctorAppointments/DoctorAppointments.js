@@ -121,7 +121,7 @@ const Appointments = ({ account, contract, provider }) => {
         <div className="appointment-dates">
           {appointmentdates.map(dates => (
             <div className="appointment-date">
-              <h4 className="doctor-name">Patient name: {dates.doctname}</h4>
+              <h4 className="doctor-name">Patient name: {dates.patientname}</h4>
               <h4 className="appointment-day">Appointment Day: {dates.appointmentday}</h4>
               <button className="cancel-appointment-btn" onClick={() => cancelAppointment(dates.appointmentday)}>Cancel this appointment</button>
             </div>

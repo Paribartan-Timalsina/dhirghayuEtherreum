@@ -8,10 +8,11 @@
   font-family: "Poppins",sans-serif;
 } 
 
-  .wrapper
+  .wrapper20
   {
-
-    width:600px;
+    margin-top: 40px;
+    background-color: #fcfcfc;
+    width:700px;
     margin-inline: auto;
     margin-right: auto;
     margin-left: auto;
@@ -107,7 +108,7 @@
   cursor: default;
 }
 
-/* .btn {
+.btn1 {
   width: 300px;
   align-items: center;
   margin-inline: auto;
@@ -118,8 +119,9 @@
   cursor: pointer;
   font-size: 18px;
   padding: 10px 20px;
+  margin-bottom: 20px;
 }
 
-.btn:hover {
+.btn1:hover {
     background: rgb(17,107,143,0.8);
-} */
+}

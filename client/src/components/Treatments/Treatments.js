@@ -75,7 +75,9 @@ function editdetails(){
 
 
   return (
-    <div className="wrapper5">
+
+    <div className='box4'>
+
       <button onClick={handleGetDetails}>Get Details</button>
       {/* {error && <div>{error}</div>} */}
      
@@ -105,7 +107,9 @@ function editdetails(){
         }
         
         
-        <button className='btn' onClick={editdetails}>Edit details</button>
+        <button className='btn' onClick={editdetails}>Edit details</button>  
+        <button onClick={editdetails}>Edit details</button>
+
     </div>
   );
 };

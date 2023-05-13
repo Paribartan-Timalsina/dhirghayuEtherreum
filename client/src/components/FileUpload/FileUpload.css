@@ -11,7 +11,7 @@
 .box1
 {
   margin-top:10px;
-  width:500px;
+  width:600px;
   margin-left: auto;
   margin-right: auto;
   padding:2rem 1rem;
@@ -33,9 +33,10 @@
 
 .box1 h1
 {
-  font-size: 25px;
-  margin-left: 9.5rem; 
+  font-size: 33px;
+  margin-left: 11rem; 
   margin-top: 20px;
+  margin-bottom: 22px;
 }
 
 .box1 label,span
@@ -46,7 +47,7 @@
 
 .box1 .btn2
 {
-    margin-left: 8rem;
+    margin-left: 10rem;
     font-size: 1rem;
     margin-top: 2.5rem;
     padding: 6px 0;
@@ -62,19 +63,15 @@
   .btn1:hover{
     background: rgb(17,107,143,0.8);
   } 
-.first
-{
-  width:400px;
-  margin-left: auto;
-  margin-right: auto;
-  padding:2rem 1rem;
-  background-color: none;
-  border-radius: center;
-  margin-top: none;
-}
+
+  .share-container {
+    position: fixed;
+    bottom: 85px;
+    right: 350px;
+  }
 .share
 {
-  background-color: #4285f4;
+  background:rgb(17,107,143);
   color: #fff;
   border: none;
   padding: 10px 20px;

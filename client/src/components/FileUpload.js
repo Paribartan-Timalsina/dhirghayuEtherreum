@@ -90,7 +90,7 @@ const FileUpload = ({account, contract, provider}) => {
         <Modal setModalOpen={setModalOpen} contract={contract}></Modal>
       )}
         
-        <div className='box1'>
+        <div className='box55'>
           <div className='logo-img'>
             <img src={logo} className="Web-Logo" alt="logo" />
           </div>
@@ -108,7 +108,6 @@ const FileUpload = ({account, contract, provider}) => {
             <button type="submit" className="btn2" disable={!file}>Submit</button>
             <button className="btn2" onClick={gotoDetails}>Fill my details</button>
         </form>
-
 
         </div>
         </>

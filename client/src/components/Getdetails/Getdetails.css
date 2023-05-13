@@ -1,5 +1,28 @@
 
   
+  .container1
+  {
+    margin-top: 60px;
+    width:600px;
+    margin-left: auto;
+    margin-right: auto;
+    padding:2rem 1rem;
+    background-color: #fff;
+    border-radius: center;
+    box-shadow: 0 20px 35px rgba(0,0,0,0.1);
+  }
+
+  .container1 img
+    {
+      display: block;
+      margin-right: auto;
+      margin-left: 220px;
+      width: 100px;
+      align-content: center; 
+      padding-bottom: 2px;
+      margin-bottom: 3px;
+    }
+
   .details h1 {
     font-size: 28px;
     margin-bottom: 10px;
@@ -11,59 +34,47 @@
     margin-bottom: 5px;
   }
   .patient-details {
-    width: 400px;
+    text-align: center;
+    width: 500px;
     background-color: #f7f7f7;
     padding: 20px;
-    border: 5px;
     border-radius: 5px;
+    font-weight: 100;
+    margin-bottom: 10px;
   }
+  
   .patient-details__header {
     font-size: 32px;
     margin-bottom: 20px;
   }
+  
   .patient-details__info {
-    margin-left: 60px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px; 
-  }
-  .patient-details__info__item {
-    font-size: 16px;
-    margin-bottom:10px;
-  }
-  .button {
-    background-color:rgb(17,107,143) ;
-    color: white;
-    padding: 10px 20px;
-    border: none;
+    margin-left: 20px;
+    text-align: left;
+    border: 1px solid #ccc;
     border-radius: 5px;
-    margin: 10px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-/*   
-  .button:hover {
-    background-color: rgb(17,107,143,0.8); ;
-  } */
-  
-  .icon {
-    margin-top: 20px;
-    width: 50px;
-    height: 50px;
+    margin-left: 60px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    padding: 1em;
   }
   
-  .error {
-    color: red;
-    margin-top: 20px;
+  .patient-details__info__item {
+    font-size: 15px;
+    font-weight: 200;
+    margin-bottom: 10px;
   }
+
+
   .treatments-heading {
     font-size: 2em;
     font-weight: bold;
-    margin-bottom: 1em;
   }
   
   .treatment-container {
     margin-bottom: 1em;
+    text-align: left;
+    margin-left: 50px;
     padding: 1em;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -75,17 +86,52 @@
     margin-bottom: 0.5em;
   }
   
-  .medication-paragraph,
-  .status-paragraph {
-    margin-bottom: 0.5em;
-  }
-  
   .status-label {
-    display: block;
-    margin-top: 1em;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
   }
   
   .status-checkbox {
-    margin-right: 0.5em;
+    margin:12-px;
+  }
+  .disease-heading {
+    margin-top: 15px;
   }
   
+  .medication-paragraph,
+  .status-paragraph {
+    margin-bottom: 5px;
+  }
+  
+  
+    .button11 {
+      background-color: rgb(17, 107, 143);
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      margin-left: 220px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+    
+
+  
+    
+    .medication-paragraph,
+    .status-paragraph {
+      margin-bottom: 0.5em;
+    }
+    
+    .status-label {
+      display: block;
+      margin-top: 1px;
+    }
+    
+    .status-checkbox {
+      margin-right: 0.5em;
+    }
+    

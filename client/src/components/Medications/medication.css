@@ -1,14 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;1,300&display=swap'); 
 
-*
-{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family: "Poppins",sans-serif;
-}
-
-.wrapper
+.wrapper5
   {
     margin-top: 60px;
     width:600px;
@@ -20,80 +11,59 @@
     box-shadow: 0 20px 35px rgba(0,0,0,0.1);
   } 
 
-.wrapper img
+/* .wrapper5 input[type]
 {
-  display:block;
-  width: 150px;
-  height: auto;
+  width: 85%;
+  outline:none;
+  border:1px solid #fff;
+  padding:14px 20px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  margin-left: 3rem;
+  gap: 15px;
+  background: #e4e4e4;
+} */
+
+.title{
+  margin-left: 160px;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+
 }
 
-.InputBox[type='text'] {
-    display: block;
-    margin-bottom: 20px;
-    font-size: 1rem;
-    width:400px;
-    outline:none;
-    border:1px solid #fff;
-    padding:12px 20px;
-    margin-top: 10px;
-    border-radius: 10px;
-    background: #e4e4e4;
+.input-box {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
 }
 
-.InputBox {
-    display: block;
-    margin-bottom: 20px;
-    }
-    
-  input[type="text"], input[type="checkbox"] {
-    display: block;
-    width: 400px;
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    margin-top: 5px;
-    }
-  
-    .InputBox select {
-      padding: 10px;
-      font-size: 16px;
-      width: 200px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      margin-left: 10px;
-    }
-    
-    .InputBox select:focus {
-      outline: none;
-      box-shadow: 0 0 5px #ccc;
-    }
-    
-    
-
-button.btn9
-{
-    margin-inline: auto;
-    font-size: 1.1rem;
-    margin-top: 1.8rem;
-    padding: 11px 0;
-    border-radius: 10px;
-    outline:none;
-    border:none;
-    width: 50%;
-    color:#fff;
-    cursor:pointer;
-    background:rgb(17,107,143);
-  }
-
-  .btn9:hover{
-    background: rgb(17,107,143,0.8);
-  } 
-
-
-h1 {
-font-size: 30px;
-margin-top: 20px;
-margin-bottom: 25px;
+.input-box label {
 }
+
+.input-box input,
+.input-box select {
+  margin-left: 45px ;
+  width:85%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.btn9 {
+  font-size: 1.1rem;
+  margin-top: 1.8rem;
+  margin-left: 145px;
+  padding: 11px 0;
+  border-radius: 10px;
+  outline:none;
+  border:none;
+  width: 50%;
+  color:#fff;
+  cursor:pointer;
+  background:rgb(17,107,143);
+}
+
+.btn9:hover{
+  background: rgb(17,107,143,0.8);
+} 
 
