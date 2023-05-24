@@ -420,12 +420,12 @@ isPatient[msg.sender]=true;
         }
     }
 
-    function display(address _user) external view returns (string[] memory,Treatment[] memory) {
+    function display(address _user) external view returns (string[] memory) {
         require(
             _user == msg.sender || ownership[_user][msg.sender],
             "You Donot Have Access"
         );
-        return (value[_user],_data[msg.sender].treatments);
+        return (value[_user]);
     }
 
 function displaydiseases(address _user) external view returns (Treatment[] memory) {
@@ -433,7 +433,7 @@ function displaydiseases(address _user) external view returns (Treatment[] memor
             _user == msg.sender || ownership[_user][msg.sender],
             "You Donot Have Access"
         );
-        return _data[msg.sender].treatments;
+        return _data[_user].treatments;
     }
     function shareAccess() public view returns (Access[] memory) {
         return accessList[msg.sender];

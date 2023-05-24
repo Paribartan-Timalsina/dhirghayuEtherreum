@@ -9,13 +9,13 @@ const Display = ({contract,account}) => {
   const getdata = async()=>{
     let dataArray;
     const Otheraddress = document.querySelector(".address").value;
-    //console.log("OtherAddress",Otheraddress)
+    console.log("OtherAddress",Otheraddress)
     
     if(Otheraddress){
       dataArray=await contract.display(Otheraddress);
      const diseases1=await contract.displaydiseases(Otheraddress);
     setDiseases(diseases1)
-
+      console.log(diseases1)
       
 
       
