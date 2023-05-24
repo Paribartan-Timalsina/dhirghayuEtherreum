@@ -8,6 +8,9 @@ import Appointments from  "./components/Appointment/Appointments.js";
 import Treatments from "./components/Treatments/Treatments";
 import Navbar from "./components/Navbar/Navbar";
 import HomePage from "./components/Home/Home";
+import About from "./components/About/About";
+import Contact from "./components/Contact/Contact";
+import Messages from "./components/Messages/Messages"
 import Modal from "./components/Modal/Modal"
 import './App.css';
 import Patientsignup from "./components/Patientsignup/Patientsignup";
@@ -20,6 +23,7 @@ import DoctorAppointments from "./components/DoctorAppointments/DoctorAppointmen
 import Patientbook from "./components/Patientbook/Patientbook";
 import Medications from "./components/Medications/Medications";
 import Icon from "./components/Doctoricon/PatientIcon";
+import ContactPage from "./components/Contact/Contact";
 function App() {
   const [account, setAccount] = useState("");
   const [contract, setContract] = useState(null);
@@ -77,6 +81,9 @@ function App() {
         <Route exact path="/icons" element={<Icon account={account} contract={contract} />} />
         <Route exact path="/treatments" element={<Treatments account={account} contract={contract} />} />
         <Route exact path="/display" element={<Display account={account} contract={contract}/>} />
+        <Route exact path="/about" element={<About />} />
+        <Route exact path="/contact" element={<Contact />} />
+        <Route exact path="/messages" element={<Messages  account={account} />} />
       </Routes>
     </>
   );

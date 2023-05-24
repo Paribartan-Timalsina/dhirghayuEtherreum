@@ -4,7 +4,7 @@ const router = express.Router()
 const DB = require('../config/db')
 const Doctor = require('../models/Schema1')
 const Appointment=require("../models/Schema2")
-
+const Contact=require("../models/Contactschema")
 
 
 const path = require("path")
@@ -201,5 +201,39 @@ router.post('/deleteappointment', async (req, res) => {
   }
 });
 
- 
+// Route for submitting the contact form
+router.post('/contact', async (req, res) => {
+  const { name, email, message } = req.body;
+
+  try {
+    // Create a new Contact document
+    const newContact = new Contact({
+      name,
+      email,
+      message,
+    });
+
+    // Save the contact form data to MongoDB
+    await newContact.save();
+
+    res.status(200).send('Contact form data saved successfully');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error saving contact form data');
+  }
+});
+
+// Route for retrieving all contact data
+router.get('/contact', async (req, res) => {
+  try {
+    // Retrieve all contact data
+    const contacts = await Contact.find();
+
+    res.json(contacts);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error retrieving contact data');
+  }
+}); 
+
 module.exports = router
