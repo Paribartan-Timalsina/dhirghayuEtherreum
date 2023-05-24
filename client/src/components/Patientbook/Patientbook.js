@@ -151,7 +151,7 @@ return (
     </form>
     <ul>
       {(state.query === '' ? "" : state.list.map(post => {
-        return <><button key={post} onClick={() => getDoctordetails(post)} className="doctor-btn">{post}</button></>
+        return <><button key={post} onClick={() => getDoctordetails(post)} className="doctor-btn1">{post}</button></>
       }))}
     </ul>
     {details &&
