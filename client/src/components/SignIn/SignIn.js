@@ -74,6 +74,8 @@ window.alert("this account doesn't exists")
                     window.alert("Unable to Login")
                     return
                 } else {
+                  const isPatient = await contract.isPatients(account);
+                  const isDoctor = await contract.isDoctors(account);
                     // this.setState({
                     //     username: '',
                     //     password: '',
@@ -88,7 +90,13 @@ window.alert("this account doesn't exists")
                     //     usernameToSend
                     // );
                     window.alert("Login successful")
+                    if(isPatient){
                     navigate("/fileupload");
+                    }else if(isDoctor){
+                      navigate("/display")
+                    }else{
+                      window.alert("You are neither a doctor nor a patient")
+                    }
                     return;
                 }
             }

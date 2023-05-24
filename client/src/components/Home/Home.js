@@ -44,10 +44,7 @@ function Home() {
             <h4>Pescription Scheduling</h4>
             <p>Each transaction, such as issuing a prescription or dispensing medication, is recorded as a block on the blockchain, creating an immutable and transparent audit trail. This enhances the security and integrity of prescription data, reducing the risk of tampering or unauthorized access.</p>         
              </div>
-          <div className='col'>
-            <h4>Billing and Claims</h4>
-            <p>Aims to provide both the patient with easy transaction through metamask ensuring safety and security maintaining the transaction more efficiently</p>          
-            </div>
+        
          </div>
         </section>
       </div>

@@ -8,12 +8,12 @@
   font-family: "Poppins",sans-serif;
 }
 
-.motherbox
+.motherbox1
 
 {
 
   margin-top: 70px;
-  width: 700px;
+  width: 800px;
   margin-left: auto;
   margin-right: auto;
   padding:2rem 1rem;
@@ -22,7 +22,7 @@
   box-shadow: 0 20px 35px rgba(0,0,0,0.1);
 }
 
-.motherbox img
+.motherbox1 img
 {
   display: block;
   margin-right: auto;
@@ -33,7 +33,7 @@
   margin-bottom: 7px;
   margin-top: 0px;
 }
-.motherbox h1{
+.motherbox1 h1{
   margin-left: 230px;
   margin-bottom: 50px;
 }

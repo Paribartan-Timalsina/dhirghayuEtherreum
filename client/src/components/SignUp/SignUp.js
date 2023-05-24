@@ -103,6 +103,9 @@ return (
       {/* <input type="submit" value="Sign Up"/> */}
     
     <input type="submit" value="Sign Up" className=" btn2 " />
+    <div class='member'>
+        Already have an account? <a href="/signin">Click to SignIn</a>
+        </div> 
     </form>
   </div>
 )

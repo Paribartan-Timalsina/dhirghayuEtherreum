@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './display.css';
 import logo from '../Assets/logo.png';
+import DoctorIcon from "../Doctoricon/DoctorIcon"
 const Display = ({contract,account}) => {
   const [data,setData]=useState("");
   const [diseases,setDiseases]=useState([]);
@@ -51,11 +52,11 @@ const Display = ({contract,account}) => {
     }
   };
   return (
-    <div class='motherbox'>
+    <div class='motherbox1'>
       <div className='logo-img'>
           <img src={logo} className="Web-Logo" alt="logo" />
     </div>
-    
+    <DoctorIcon />
     <div>{data}</div>
     <h1>Enter Address </h1>
     <input type="text" className='address' placeholder='Enter Address'/>
