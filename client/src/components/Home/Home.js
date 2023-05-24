@@ -29,23 +29,24 @@ function Home() {
       <div>
         <section className="features">
           <h3>Features</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+            <p>Dirghayu is a smart contract based Blockchain system</p>
          <div className='row'>
           <div className='col'>
             <h4>Electronic Health Records</h4>
-          <p> Lorem ipsum dolor sit amet, consectetur adipiscing elitUt enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur </p>
+          <p> EHRs contain comprehensive and standardized data, including medical history, diagnoses, treatments, medications, test results, and more. In this article, we will explore the key features and benefits of electronic health records and how they have transformed healthcare delivery and patient care.
+</p>
           </div>
           <div className='col'>
             <h4>Appointment Scheduling</h4>
-            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur </p>
+            <p>Dirghayu aims to provide appropraite appointment scheduling for the patient and doctors where they can easiky access the pescrobed time as per their schedule and easy decline their appoinment</p>
           </div>
           <div className='col'>
             <h4>Pescription Scheduling</h4>
-            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur </p>         
+            <p>Each transaction, such as issuing a prescription or dispensing medication, is recorded as a block on the blockchain, creating an immutable and transparent audit trail. This enhances the security and integrity of prescription data, reducing the risk of tampering or unauthorized access.</p>         
              </div>
           <div className='col'>
             <h4>Billing and Claims</h4>
-            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur </p>          
+            <p>Aims to provide both the patient with easy transaction through metamask ensuring safety and security maintaining the transaction more efficiently</p>          
             </div>
          </div>
         </section>

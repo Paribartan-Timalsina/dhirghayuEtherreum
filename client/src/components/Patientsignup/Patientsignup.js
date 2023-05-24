@@ -52,8 +52,8 @@ const Patientsignup = ({account,contract,provider}) => {
       Patient Registration
     </h1>
       <form onSubmit={handleSubmit}>
-      <div className="patient-details"> 
-        <label className="">
+      <div > 
+        <label className="InputBox1">
           <span>Name</span>
           <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
         </label>
@@ -93,8 +93,6 @@ const Patientsignup = ({account,contract,provider}) => {
           <input type="text" value={bloodgroup} onChange={(e) => setBloodgroup(e.target.value)} />
         </label>
         <br />
-        
-      
         <label className="InputBox1">
           <span>Emergency Contact Name</span>
           <input
