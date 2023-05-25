@@ -25,8 +25,10 @@ const Display = ({contract,account}) => {
     }
     
     const isEmpty = Object.keys(dataArray).length===0;
-    
-    if(!isEmpty){
+    if(isEmpty){
+      console.log("xya")
+    }
+    else if(!isEmpty){
       console.log("hururu")
       const str = dataArray.toString();
       const str_array = str.split(",");
@@ -62,7 +64,7 @@ const Display = ({contract,account}) => {
     
     <button className='getdatabtn' onClick={getdata}>Get Data</button>
     {array.map((item,i)=>(
-      <a href={item} key={i} target="_blank" >
+      <a href={`https://gateway.pinata.cloud/ipfs/${item.substring(6)}`} key={i} target="_blank" >
             <img
               key={i}
               src={`https://gateway.pinata.cloud/ipfs/${item.substring(6)}`}
