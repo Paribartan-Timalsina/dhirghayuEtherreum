@@ -24,6 +24,7 @@ import Patientbook from "./components/Patientbook/Patientbook";
 import Medications from "./components/Medications/Medications";
 import Icon from "./components/Doctoricon/PatientIcon";
 import ContactPage from "./components/Contact/Contact";
+import Reports from "./components/Reports/Reports";
 function App() {
   const [account, setAccount] = useState("");
   const [contract, setContract] = useState(null);
@@ -83,6 +84,7 @@ function App() {
         <Route exact path="/display" element={<Display account={account} contract={contract}/>} />
         <Route exact path="/about" element={<About />} />
         <Route exact path="/contact" element={<Contact />} />
+        <Route exact path="/reports" element={<Reports />} />
         <Route exact path="/messages" element={<Messages  account={account} />} />
       </Routes>
     </>

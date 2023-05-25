@@ -147,14 +147,12 @@ const getAppointments=async()=>{
   <div className="doctor-details">
     <h1 className="doctor-name">{details[0]}</h1>
     <div className="doctor-contact-info">
-      <h3>Phone number: {details[1]}</h3>
-      <h3>Gender: {details[2]}</h3>
-      <h3>Date of birth: {details[3]}</h3>
-    </div>
-    <div className="doctor-qualification">
-      <h3>Qualification: {details[4]}</h3>
-      <h3>Major: {details[5]}</h3>
-      <h3>Blood Group: {details[6]}</h3>
+      <h3 className='doctor-contact-info-item'>Phone number: {details[1]}</h3>
+      <h3 className='doctor-contact-info-item'>Gender: {details[2]}</h3>
+      <h3 className='doctor-contact-info-item'>Date of birth: {details[3]}</h3>
+      <h3 className='doctor-contact-info-item'>Qualification: {details[4]}</h3>
+      <h3 className='doctor-contact-info-item'>Major: {details[5]}</h3>
+      <h3 className='doctor-contact-info-item'>Blood Group: {details[6]}</h3>
     </div>
   </div>
 }

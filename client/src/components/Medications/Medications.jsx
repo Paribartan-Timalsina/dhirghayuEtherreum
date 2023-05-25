@@ -24,6 +24,7 @@ function Medications({account,contract,provider}) {
       setMedication('');
       setStatus(false);
     } catch (error) {
+      console.log(error)
       alert(`Error: ${error.message}`);
     }
   }

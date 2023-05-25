@@ -3,7 +3,7 @@
   .container1
   {
     margin-top: 60px;
-    width:600px;
+    width:700px;
     margin-left: auto;
     margin-right: auto;
     padding:2rem 1rem;
@@ -16,7 +16,7 @@
     {
       display: block;
       margin-right: auto;
-      margin-left: 220px;
+      margin-left: 260px;
       width: 100px;
       align-content: center; 
       padding-bottom: 2px;
@@ -70,7 +70,6 @@
     font-size: 2em;
     font-weight: bold;
   }
-  
   .treatment-container {
     margin-bottom: 1em;
     text-align: left;
@@ -111,7 +110,7 @@
       padding: 10px 20px;
       border: none;
       border-radius: 5px;
-      margin-left: 220px;
+      margin-left: 260px;
       cursor: pointer;
       font-size: 16px;
       margin-top: 20px;
@@ -119,8 +118,39 @@
     }
     
 
-  
+    .doctor-details {
+      text-align: center;
+      font-size: 10;
+    }
     
+    .doctor-details-header {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+    
+    .doctor-details-info {
+      margin-left: 20px;
+      text-align: left;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-left: 60px;
+      margin-top: 10px;
+      margin-bottom: 30px;
+      padding: 1em;
+    }
+    
+    .doctor-contact-info-item {
+      font-size: 15px;
+      font-weight: 200;
+      margin-bottom: 10px;
+    }
+
+    .doctor-qualification-item {
+      font-size: 15px;
+      font-weight: 200;
+      margin-bottom: 10px;
+    }
+
     .medication-paragraph,
     .status-paragraph {
       margin-bottom: 0.5em;
@@ -130,7 +160,7 @@
       display: block;
       margin-top: 1px;
     }
-    
+  
     .status-checkbox {
       margin-right: 0.5em;
     }

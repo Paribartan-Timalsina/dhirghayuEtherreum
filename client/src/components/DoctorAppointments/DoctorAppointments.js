@@ -18,7 +18,7 @@ const Appointments = ({ account, contract, provider }) => {
   const [doctorname,setDoctorname]=useState()
   const [appointmentsLoaded, setAppointmentsLoaded] = useState(false);
   useEffect(() => {
-    //handleGetDetails();
+    handleGetDetails();
   }, [])
   const handleGetDetails = async () => {
     try {
@@ -52,7 +52,7 @@ const Appointments = ({ account, contract, provider }) => {
       } else if (isDoctor) {
         const name= await contract.getDoctorDetails()
         console.log(name[1])
-        setPatientname(name[1])
+        setDoctorname(name[1])
         try {
           const response = await axios.post('http://localhost:5000/getdoctorappointment', { doctname:name[1] }, {
             headers: {

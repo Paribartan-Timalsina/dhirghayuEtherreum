@@ -48,7 +48,8 @@
   padding: 20px;
   border: 0.5px solid #ccc;
   border-radius: 4px;
-  margin-bottom: 10px;
+  margin-bottom: 40px;
+  margin-top: 20px;
   
 }
 
@@ -66,14 +67,14 @@
 
 .getdatabtn
 {
-  margin-left: 12rem;
-  font-size: 1.2rem;
+  margin-left: 3rem;
+  font-size: 1.1rem;
   margin-top: 0.5rem;
-  padding: 11px 0;
+  padding: 10px 0;
   border-radius: 10px;
   outline:none;
   border:none;
-  width: 40%;
+  width: 35%;
   color:#fff;
   cursor:pointer;
   background:rgb(17,107,143);
@@ -83,6 +84,29 @@
 {
     background: rgb(17,107,143,0.8);  
 } 
+
+
+.seereportsbtn
+{
+  margin-left: 8rem;
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
+  padding: 12px 0;
+  border-radius: 10px;
+  outline:none;
+  border:none;
+  width: 35%;
+  color:#fff;
+  cursor:pointer;
+  background:rgb(17,107,143);
+  margin-bottom: 20px;
+}
+.seereportsbtn:hover
+{
+    background: rgb(17,107,143,0.8);  
+} 
+
+
 
 .image-list1 {
   display: block;
